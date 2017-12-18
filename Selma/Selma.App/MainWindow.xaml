@@ -1,0 +1,33 @@
+﻿<Window x:Class="Selma.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Selma.App"
+        xmlns:controls="clr-namespace:Selma.App.Controls"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Name="Candidates" Width="*" />
+            <ColumnDefinition Name="CandidateInfo" Width="2*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0">
+            <Button>Dodaj novog kandidata</Button>
+            <TreeView Name="CandidatesTree" Grid.Column="0">
+                <TreeViewItem Header="A">
+                    <Button>Alisic Armin</Button>
+                    <Button>Ajkunic Nedzad</Button>
+                </TreeViewItem>
+                <TreeViewItem Header="M">
+                    <Button>Merdovic Mirza</Button>
+                    <Button>Mameledzija Mustafa</Button>
+                </TreeViewItem>
+            </TreeView>
+        </StackPanel>
+
+        <controls:CandidateControl Grid.Column="1">
+        </controls:CandidateControl>
+    </Grid>
+</Window>

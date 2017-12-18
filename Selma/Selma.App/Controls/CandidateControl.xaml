@@ -1,0 +1,103 @@
+﻿<UserControl x:Class="Selma.App.Controls.CandidateControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Selma.App.Controls"
+             mc:Ignorable="d">
+    <Grid Name="gridMain">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="24px" />
+        </Grid.RowDefinitions>
+        
+        <Grid Name="gridCandidateInfo" Grid.Row="0" ShowGridLines="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" Background="LightGray" Grid.ColumnSpan="4"/>
+            <Label Name="lblId" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">ID:</Label>
+            <TextBox Name="txtId" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">42</TextBox>
+
+            <Label Name="lblFirstName" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">Ime: </Label>
+            <TextBox Name="txtFirstName" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">Mirza</TextBox>
+
+            <Label Name="lblLastName" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center">Prezime:</Label>
+            <TextBox Name="txtLastName" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center">Merdovic</TextBox>
+
+            <Border Grid.Row="2" Background="LightGray" Grid.ColumnSpan="4"/>
+            <Label Name="lblNameOfParent" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center">Ime jednog roditelja:</Label>
+            <TextBox Name="txtNameOfParent" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">Mirza</TextBox>
+
+            <Label Name="lblAddress" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center">Adresa:</Label>
+            <TextBox Name="txtAddress" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Center">Aleja Lipa 13</TextBox>
+
+            <Border Grid.Row="4" Background="LightGray" Grid.ColumnSpan="4"/>
+            <Label Name="lblPostalCode" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center">Postanski broj:</Label>
+            <TextBox Name="txtPostalCode" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">71000</TextBox>
+
+            <Label Name="lblCity" Grid.Row="4" Grid.Column="2" VerticalAlignment="Center">Grad:</Label>
+            <TextBox Name="txtCity" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center">Sarajevo</TextBox>
+
+            <Label Name="lblPhone" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center">Telefon:</Label>
+            <TextBox Name="txtPhone" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">063 002 124</TextBox>
+
+            <Label Name="lblCitizenship" Grid.Row="5" Grid.Column="2" VerticalAlignment="Center">Drzavljanstvo:</Label>
+            <TextBox Name="txtCitizenship" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center">Bosna i Hercegovina</TextBox>
+            
+        </Grid>
+
+        <Grid Name="gridDriverLicenceInfo" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" Background="LightGray" Grid.ColumnSpan="4"/>
+            <Label Name="lblLicenceId" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">Broj vozacke dozvole:</Label>
+            <TextBox Name="txtLicenceId" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">12M456C89O</TextBox>
+
+            <Label Name="lblLicenceCategory" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center">Kategorija:</Label>
+            <TextBox Name="txtLicenceCategory" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center">B C</TextBox>
+
+            <Label Name="lblIssuedOn" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">Izdata dana:</Label>
+            <TextBox Name="txtIssuedOn" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">24.04.2014</TextBox>
+
+            <Label Name="lblExpiresOn" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center">Istice dana:</Label>
+            <TextBox Name="txtExpiresOn" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center">23.04.2024</TextBox>
+        </Grid>
+
+        <Grid Name="gridExam" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="5">Kreiraj prijavu</Button>
+        </Grid>
+    </Grid>
+</UserControl>
