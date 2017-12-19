@@ -58,6 +58,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Elements\AddCandidate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -68,6 +72,9 @@
     </Compile>
     <Compile Include="Controls\CandidateControl.xaml.cs">
       <DependentUpon>CandidateControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Elements\AddCandidate.xaml.cs">
+      <DependentUpon>AddCandidate.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -99,6 +106,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Selma.Contracts\Selma.Contracts.csproj">
+      <Project>{f1476d05-a991-4a8c-9924-3aa301ab9c7f}</Project>
+      <Name>Selma.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Selma.DataAccess\Selma.DataAccess.csproj">
+      <Project>{d10e0fb1-fb26-4666-b1de-339718f7643e}</Project>
+      <Name>Selma.DataAccess</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

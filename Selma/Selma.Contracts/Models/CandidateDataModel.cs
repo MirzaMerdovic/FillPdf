@@ -1,8 +1,11 @@
-﻿namespace Selma.Contracts.Entities
+﻿using System;
+using Selma.Contracts.Entities;
+
+namespace Selma.Contracts.Models
 {
-    public class Candidate
+    public class CandidateDataModel
     {
-        public int Id { get; set; }
+        public int CandidateId { get; set; }
 
         public string FirstName { get; set; }
 
@@ -20,6 +23,12 @@
 
         public string Phone { get; set; }
 
-        public int DrivingLicenceId { get; set; }
+        public string LicenceId { get; set; }
+
+        public DrivingLicenceCategory Category { get; set; }
+
+        public DateTime IssuedOn { get; set; }
+
+        public DateTime ExpiresOn { get; set; }
     }
 }

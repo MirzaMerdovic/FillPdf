@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.util;
 using iTextSharp.text;
 using iTextSharp.text.pdf;

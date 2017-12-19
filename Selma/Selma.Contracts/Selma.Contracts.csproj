@@ -44,6 +44,7 @@
     <Compile Include="Entities\DrivingExam.cs" />
     <Compile Include="Entities\DrivingLicence.cs" />
     <Compile Include="Entities\DrivingLicenceCategory.cs" />
+    <Compile Include="Models\CandidateDataModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

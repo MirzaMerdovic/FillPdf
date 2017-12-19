@@ -7,27 +7,28 @@
         xmlns:controls="clr-namespace:Selma.App.Controls"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
+    <Grid Name="GridMain">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Name="Candidates" Width="*" />
             <ColumnDefinition Name="CandidateInfo" Width="2*" />
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="0">
-            <Button>Dodaj novog kandidata</Button>
-            <TreeView Name="CandidatesTree" Grid.Column="0">
-                <TreeViewItem Header="A">
+            <Button Name="ButtonAddCandidate" Click="AddNewCandidate">Dodaj novog kandidata</Button>
+            <TreeView Name="TreeViewCandidates">
+                <!--<TreeViewItem Header="A">
                     <Button>Alisic Armin</Button>
                     <Button>Ajkunic Nedzad</Button>
                 </TreeViewItem>
                 <TreeViewItem Header="M">
                     <Button>Merdovic Mirza</Button>
                     <Button>Mameledzija Mustafa</Button>
-                </TreeViewItem>
+                </TreeViewItem>-->
             </TreeView>
         </StackPanel>
 
-        <controls:CandidateControl Grid.Column="1">
-        </controls:CandidateControl>
+        <Grid Name="GridCandidateInfoWrapper" Grid.Column="1">
+            <controls:CandidateControl></controls:CandidateControl>
+        </Grid>
     </Grid>
 </Window>
