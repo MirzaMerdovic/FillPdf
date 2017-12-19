@@ -1,8 +1,9 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using Selma.App.Controls;
 using Selma.App.Elements;
+using Selma.DataAccess;
 
 namespace Selma.App
 {
@@ -11,45 +12,60 @@ namespace Selma.App
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly CandidateDataRepository _repository;
+
         public MainWindow()
         {
             InitializeComponent();
-            InitializeDataStructure();
+
+            _repository = new CandidateDataRepository();
+            InitializeDataStructure(_repository);
         }
 
-        private void InitializeDataStructure()
+        private void InitializeDataStructure(CandidateDataRepository repository)
         {
-            var currentDirectory = new DirectoryInfo(Environment.CurrentDirectory);
-            var rootPath = currentDirectory.Parent.Parent.FullName;
-
-            var candidatesPath = Path.Combine(rootPath, @"Data\Candidates");
-
-            if (!Directory.Exists(candidatesPath))
-                Directory.CreateDirectory(candidatesPath);
-
-            LoadTreeView(candidatesPath, TreeViewCandidates);
+            var candidatesPath = Helper.GetOrCreateDataPath();
+            LoadTreeView(candidatesPath, TreeViewCandidates, repository);
         }
 
-        private static void LoadTreeView(string rootPath, ItemsControl root)
+        private static void LoadTreeView(string rootPath, ItemsControl root, CandidateDataRepository repository)
         {
             var rootDirectory = new DirectoryInfo(rootPath);
 
             foreach (var directory in rootDirectory.GetDirectories("*", SearchOption.TopDirectoryOnly))
             {
-                var item = new TreeViewItem {Name = $"TreeViewItem{directory.Name}", Header = directory.Name};
+                var item = new TreeViewItem {Name = $"ParentItem{directory.Name}", Header = directory.Name};
                 root.Items.Add(item);
 
-                LoadCandidates(item, directory);
+                LoadCandidates(item, directory, repository);
             }
         }
 
-        private static void LoadCandidates(TreeViewItem parent, DirectoryInfo parentDiectory)
+        private static void LoadCandidates(ItemsControl parent, DirectoryInfo parentDiectory, CandidateDataRepository repository)
         {
-            foreach (var candidate in parentDiectory.GetFiles("*.json", SearchOption.TopDirectoryOnly))
+            foreach (var document in repository.GetAll(parentDiectory.FullName))
             {
-                var item = new TreeViewItem {Header = candidate.Name.Replace(candidate.Extension, string.Empty)};
+                var item = new TreeViewItem
+                {
+                    Header = $"{document.LastName} {document.FirstName}",
+                    DataContext = document
+                };
+
+                item.Selected += ItemOnSelected;
+
                 parent.Items.Add(item);
             }
+        }
+
+        private static void ItemOnSelected(object sender, RoutedEventArgs routedEventArgs)
+        {
+            var item = (TreeViewItem) sender;
+
+            var grid = (Grid)((Grid)GetWindow(item).Content).Children[1];
+            grid.Children.Clear();
+
+            var candidateControl = new CandidateControl {DataContext = item.DataContext};
+            grid.Children.Add(candidateControl);
         }
 
         private void AddNewCandidate(object sender, RoutedEventArgs e)

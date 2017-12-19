@@ -40,12 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Candidate.cs" />
-    <Compile Include="Entities\DrivingExam.cs" />
-    <Compile Include="Entities\DrivingLicence.cs" />
-    <Compile Include="Entities\DrivingLicenceCategory.cs" />
-    <Compile Include="Models\CandidateDataModel.cs" />
+    <Compile Include="Entities\DrivingLicenceInfo.cs" />
+    <Compile Include="Entities\CandidateDocument.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

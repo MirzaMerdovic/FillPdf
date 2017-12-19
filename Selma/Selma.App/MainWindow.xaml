@@ -15,20 +15,11 @@
 
         <StackPanel Grid.Column="0">
             <Button Name="ButtonAddCandidate" Click="AddNewCandidate">Dodaj novog kandidata</Button>
-            <TreeView Name="TreeViewCandidates">
-                <!--<TreeViewItem Header="A">
-                    <Button>Alisic Armin</Button>
-                    <Button>Ajkunic Nedzad</Button>
-                </TreeViewItem>
-                <TreeViewItem Header="M">
-                    <Button>Merdovic Mirza</Button>
-                    <Button>Mameledzija Mustafa</Button>
-                </TreeViewItem>-->
-            </TreeView>
+            <TreeView Name="TreeViewCandidates" />
         </StackPanel>
 
         <Grid Name="GridCandidateInfoWrapper" Grid.Column="1">
-            <controls:CandidateControl></controls:CandidateControl>
+            <!--<controls:CandidateControl x:Name="ControlCandidateData"></controls:CandidateControl>-->
         </Grid>
     </Grid>
 </Window>

@@ -1,8 +1,8 @@
 ﻿namespace Selma.Contracts.Entities
 {
-    public class Candidate
+    public class CandidateDocument
     {
-        public int Id { get; set; }
+        public string CandidateId { get; set; }
 
         public string FirstName { get; set; }
 
@@ -20,6 +20,6 @@
 
         public string Phone { get; set; }
 
-        public int DrivingLicenceId { get; set; }
+        public DrivingLicenceInfo DrivingLicence { get; set; }
     }
 }

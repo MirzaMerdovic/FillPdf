@@ -1,14 +1,19 @@
-﻿<Window x:Class="Selma.App.Elements.AddCandidate"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Selma.App.Elements"
+        xmlns:entities="clr-namespace:Selma.Contracts.Entities;assembly=Selma.Contracts"
+        x:Class="Selma.App.Elements.AddCandidate"
         mc:Ignorable="d"
         Title="AddCandidate" Height="300" Width="300">
+    
+    <Window.DataContext>
+        <entities:CandidateDocument/>
+    </Window.DataContext>
+    
     <Grid>
         <Grid x:Name="GridCandidateData">
-
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
@@ -93,14 +98,14 @@
                 <DatePicker x:Name="DatePickerExpiresOn" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" SelectedDate="{Binding ExpiresOn}" FirstDayOfWeek="Monday" />
             </Grid>
 
-            <Grid x:Name="GridExam" Grid.Row="2">
+            <Grid x:Name="GridSave" Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="2*" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
-                
-                <Button Name="SaveCandidate" Grid.Column="1">Spremi</Button>
+
+                <Button x:Name="SaveCandidate" Grid.Column="1" Click="SaveCandidate_OnClick" Content="Spremi"/>
             </Grid>
         </Grid>
     </Grid>

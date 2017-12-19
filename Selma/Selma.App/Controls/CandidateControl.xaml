@@ -2,12 +2,13 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:models="clr-namespace:Selma.Contracts.Models;assembly=Selma.Contracts" x:Class="Selma.App.Controls.CandidateControl"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:entities="clr-namespace:Selma.Contracts.Entities;assembly=Selma.Contracts"
+             x:Class="Selma.App.Controls.CandidateControl"
              mc:Ignorable="d">
     
     <UserControl.DataContext>
-        <models:CandidateDataModel/>
+        <entities:CandidateDocument/>
     </UserControl.DataContext>
     
     <Grid x:Name="GridCandidateData">
@@ -84,16 +85,16 @@
 
             <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Background="LightGray" />
             <Label x:Name="LabelLicenceId" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Content="Broj vozacke dozvole:"/>
-            <TextBox x:Name="TextBoxLicenceId" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="{Binding LicenceId}"/>
+            <TextBox x:Name="TextBoxLicenceId" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="{Binding DrivingLicence.LicenceId}"/>
 
             <Label x:Name="LabelLicenceCategory" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Content="Kategorija:"/>
-            <TextBox x:Name="TextBoxLicenceCategory" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="{Binding Category}"/>
+            <TextBox x:Name="TextBoxLicenceCategory" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="{Binding DrivingLicence.Category}"/>
 
             <Label x:Name="LabelIssuedOn" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Content="Izdata dana:"/>
-            <DatePicker x:Name="DatePickerIssuedOn" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" SelectedDate="{Binding IssuedOn}" FirstDayOfWeek="Monday" />
+            <DatePicker x:Name="DatePickerIssuedOn" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" SelectedDate="{Binding DrivingLicence.IssuedOn}" FirstDayOfWeek="Monday" />
             
             <Label x:Name="LabelExpiresOn" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Content="Istice dana:"/>
-            <DatePicker x:Name="DatePickerExpiresOn" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" SelectedDate="{Binding ExpiresOn}" FirstDayOfWeek="Monday" />
+            <DatePicker x:Name="DatePickerExpiresOn" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" SelectedDate="{Binding DrivingLicence.ExpiresOn}" FirstDayOfWeek="Monday" />
         </Grid>
 
         <Grid x:Name="GridExam" Grid.Row="2">
