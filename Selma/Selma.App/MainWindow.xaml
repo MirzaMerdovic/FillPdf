@@ -3,23 +3,28 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Selma.App"
-        xmlns:controls="clr-namespace:Selma.App.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="500" Width="550">
     <Grid Name="GridMain">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Name="Candidates" Width="*" />
-            <ColumnDefinition Name="CandidateInfo" Width="2*" />
+            <ColumnDefinition Name="Candidates" Width="2*" />
+            <ColumnDefinition Name="CandidateInfo" Width="5*" />
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="0">
-            <Button Name="ButtonAddCandidate" Click="AddNewCandidate">Dodaj novog kandidata</Button>
-            <TreeView Name="TreeViewCandidates" />
-        </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Column="0" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="24" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Button Name="ButtonAddCandidate" Grid.Row="0" Click="AddNewCandidate">Dodaj novog kandidata</Button>
+            <TreeView Name="TreeViewCandidates" Grid.Row="1"/>
+        </Grid>
 
         <Grid Name="GridCandidateInfoWrapper" Grid.Column="1">
-            <!--<controls:CandidateControl x:Name="ControlCandidateData"></controls:CandidateControl>-->
         </Grid>
     </Grid>
 </Window>

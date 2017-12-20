@@ -22,7 +22,7 @@
             <RowDefinition Height="24px" />
         </Grid.RowDefinitions>
 
-        <Grid x:Name="GridCandidateInfo" Grid.Row="0" ShowGridLines="True">
+        <Grid x:Name="GridCandidateInfo" Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
