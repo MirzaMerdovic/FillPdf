@@ -1,0 +1,18 @@
+{
+	"CandidateId" : 34,
+	"FirstName" : "Teufik",
+	"LastName" : "Æoroviæ",
+	"NameOfParent" : "Edis",
+	"Address" : "Braæe Fejiæa 3",
+	"PostalCode" : "77000",
+	"City" : "Mostar",
+	"Citizeship" : "Bosna i Hercegovina",
+	"Phone" : "061 215 551",
+	"DriverLicenceInfo" : {
+		"LicenceId" : "3R5674L8I5",
+		"Category" : "B",
+		"IssuedOn" : "13.06.2010",
+		"ExpiresOn" : "13.06.2020",
+		"Notes" : "Sve ok"
+	}
+}

@@ -7,21 +7,21 @@ using Selma.Contracts.Entities;
 
 namespace Selma.DataAccess
 {
-    public class CandidateDataRepository
+    public class CandidateInfoRepository : ICandidateInfoRepository
     {
-        public void Create(CandidateDocument data)
+        public void Create(CandidateInfo info)
         {
-            data.CandidateId = Guid.NewGuid().ToString("N");
+            info.CandidateId = Guid.NewGuid().ToString("N");
             
-            var parentPath = Helper.GetOrCreateParentPath(data.FirstName.Substring(0, 1));
-            var candidatePath = Path.Combine(parentPath, $"{data.LastName} {data.FirstName}.json");
+            var parentPath = Helper.GetOrCreateParentPath(info.LastName.Substring(0, 1));
+            var candidatePath = Path.Combine(parentPath, $"{info.LastName} {info.FirstName}.json");
 
-            var json = JsonConvert.SerializeObject(data, Formatting.Indented);
+            var json = JsonConvert.SerializeObject(info, Formatting.Indented);
 
             Helper.SaveCandidate(candidatePath, json);
         }
 
-        public CandidateDocument Get(string firstName, string lastName)
+        public CandidateInfo Get(string firstName, string lastName)
         {
             var parentPath = Helper.GetOrCreateParentPath(lastName.Substring(0, 1));
             var candidateDocumentPath = Path.Combine(parentPath, $"{lastName} {firstName}.json");
@@ -29,23 +29,29 @@ namespace Selma.DataAccess
             return Get(candidateDocumentPath);
         }
 
-        public CandidateDocument Get(string candidateDocumentPath)
+        public CandidateInfo Get(string candidateDocumentPath)
         {
             if (!File.Exists(candidateDocumentPath))
                 return null;
 
             var json = Helper.ReadCandidateJson(candidateDocumentPath);
-            var document = JsonConvert.DeserializeObject<CandidateDocument>(json);
+            var document = JsonConvert.DeserializeObject<CandidateInfo>(json);
 
             return document;
         }
 
-        public IEnumerable<CandidateDocument> GetAll(string parentPath)
+        public IEnumerable<CandidateInfo> GetAll(string parentPath)
         {
             return
                 Directory.GetFiles(parentPath, "*.json", SearchOption.TopDirectoryOnly)
                     .Select(Get)
                     .ToList();
+        }
+
+        public void Update(CandidateInfo info)
+        {
+            Delete(info.FirstName, info.LastName);
+            Create(info);
         }
 
         public void Delete(string firstName, string lastName)

@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\DrivingLicenceInfo.cs" />
-    <Compile Include="Entities\CandidateDocument.cs" />
+    <Compile Include="Entities\CandidateInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

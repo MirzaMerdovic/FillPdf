@@ -1,6 +1,6 @@
 ﻿namespace Selma.Contracts.Entities
 {
-    public class CandidateDocument
+    public class CandidateInfo
     {
         public string CandidateId { get; set; }
 

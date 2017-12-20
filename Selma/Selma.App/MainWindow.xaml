@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="550">
+
     <Grid Name="GridMain">
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Name="Candidates" Width="2*" />
             <ColumnDefinition Name="CandidateInfo" Width="5*" />
@@ -14,17 +16,19 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
+
         <Grid Grid.Column="0" Grid.Row="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="24" />
+                <RowDefinition Height="28" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="28" />
             </Grid.RowDefinitions>
-            <Button Name="ButtonAddCandidate" Grid.Row="0" Click="AddNewCandidate">Dodaj novog kandidata</Button>
+            <Button Name="ButtonAddCandidate" Grid.Row="0" Click="AddNewCandidate" Margin="4" Background="LimeGreen">Dodaj novog kandidata</Button>
             <TreeView Name="TreeViewCandidates" Grid.Row="1"/>
+            <Button Name="ButtonRefresh" Grid.Row="2" Click="ButtonRefresh_OnClick" Margin="4" Background="DarkSeaGreen">Osvježi</Button>
         </Grid>
 
-        <Grid Name="GridCandidateInfoWrapper" Grid.Column="1">
-        </Grid>
+        <Grid Name="GridCandidateInfoWrapper" Grid.Column="1" />
+
     </Grid>
 </Window>
