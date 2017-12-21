@@ -1,6 +1,6 @@
 ﻿namespace Selma.UI
 {
-    partial class frmMain
+    partial class FrmMain
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Kandidati");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Kandidati");
             this.containerMain = new System.Windows.Forms.SplitContainer();
             this.treeViewCandidates = new System.Windows.Forms.TreeView();
             this.dgvCandidates = new System.Windows.Forms.DataGridView();
@@ -63,13 +63,13 @@
             this.treeViewCandidates.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeViewCandidates.Location = new System.Drawing.Point(0, 0);
             this.treeViewCandidates.Name = "treeViewCandidates";
-            treeNode2.Name = "nodeCandidates";
-            treeNode2.Text = "Kandidati";
+            treeNode1.Name = "nodeCandidates";
+            treeNode1.Text = "Kandidati";
             this.treeViewCandidates.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode1});
             this.treeViewCandidates.Size = new System.Drawing.Size(283, 774);
             this.treeViewCandidates.TabIndex = 0;
-            this.treeViewCandidates.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewCandidates_NodeMouseClick);
+            this.treeViewCandidates.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.TreeViewCandidates_NodeMouseClick);
             // 
             // dgvCandidates
             // 
@@ -87,8 +87,7 @@
             this.dgvCandidates.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCandidates.Size = new System.Drawing.Size(735, 774);
             this.dgvCandidates.TabIndex = 0;
-            this.dgvCandidates.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCandidates_CellDoubleClick);
-            this.dgvCandidates.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvCandidates_MouseDoubleClick);
+            this.dgvCandidates.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvCandidates_CellDoubleClick);
             // 
             // clmFirstName
             // 
@@ -110,7 +109,7 @@
             this.Controls.Add(this.containerMain);
             this.Name = "frmMain";
             this.Text = "Auto Skola - Selma";
-            this.Load += new System.EventHandler(this.frmMain_Load);
+            this.Load += new System.EventHandler(this.FrmMain_Load);
             this.containerMain.Panel1.ResumeLayout(false);
             this.containerMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.containerMain)).EndInit();

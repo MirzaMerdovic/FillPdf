@@ -1,11 +1,18 @@
 {
-	"CandidateId" : 2,
-	"FirstName" : "Mirza",
-	"LastName" : "Merdoviæ",
-	"NameOfParent" : "Dedo",
-	"Address" : "Aleja Lipa 13",
-	"PostalCode" : "71000",
-	"City" : "Sarajevo",
-	"Citizeship" : "Bosna i Hercegovina",
-	"Phone" : "063 002 124"
+  "CandidateId": "acf62dfff1b44d93a3140719894cf44d",
+  "FirstName": "Mirza",
+  "LastName": "Merdoviæ",
+  "NameOfParent": null,
+  "Address": "Aleja Lipa 13",
+  "PostalCode": "71000",
+  "City": "Sarajevo",
+  "Citizenship": "",
+  "Phone": "063 002 124",
+  "DrivingLicence": {
+    "LicenceId": "4T56712U8",
+    "Category": "B",
+    "IssuedOn": "2014-06-11T14:44:58",
+    "ExpiresOn": "2019-06-11T14:44:58",
+    "Notes": null
+  }
 }
