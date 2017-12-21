@@ -11,7 +11,5 @@ namespace Selma.Contracts.Entities
         public DateTime IssuedOn { get; set; }
 
         public DateTime ExpiresOn { get; set; }
-
-        public string Notes { get; set; }
     }
 }

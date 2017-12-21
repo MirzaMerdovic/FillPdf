@@ -1,4 +1,6 @@
-﻿namespace Selma.Contracts.Entities
+﻿using System;
+
+namespace Selma.Contracts.Entities
 {
     public class CandidateInfo
     {
@@ -10,6 +12,8 @@
 
         public string NameOfParent { get; set; }
 
+        public DateTime BirthDate { get; set; }
+
         public string Address { get; set; }
 
         public string PostalCode { get; set; }
@@ -19,6 +23,12 @@
         public string Citizenship { get; set; }
 
         public string Phone { get; set; }
+
+        public string Jmbg { get; set; }
+
+        public string Occupancy { get; set; }
+
+        public string Notes { get; set; }
 
         public DrivingLicenceInfo DrivingLicence { get; set; }
     }

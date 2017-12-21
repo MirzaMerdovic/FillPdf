@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.IO;
 using System.Text;
 
@@ -6,11 +7,26 @@ namespace Selma.DataAccess
 {
     public static class Helper
     {
+        public static string GetPdfTemplateLocation()
+        {
+            var templateLocation = Path.Combine(GetRootPath(), @"Data\Prazna.pdf");
+
+            return templateLocation;
+        }
+
+        public static string GetTempFolder()
+        {
+            var tempPath = Path.Combine(GetRootPath(), @"Data\Temp");
+
+            if (!Directory.Exists(tempPath))
+                Directory.CreateDirectory(tempPath);
+
+            return tempPath;
+        }
+
         public static string GetOrCreateDataPath()
         {
-            var currentDirectory = new DirectoryInfo(Environment.CurrentDirectory);
-            var rootPath = currentDirectory.Parent.Parent.FullName;
-
+            var rootPath = GetRootPath();
             var dataPath = Path.Combine(rootPath, @"Data\Candidates");
 
             if (!Directory.Exists(dataPath))
@@ -37,6 +53,19 @@ namespace Selma.DataAccess
         public static string ReadCandidateJson(string candidatePath)
         {
             return File.ReadAllText(candidatePath, Encoding.GetEncoding("ISO-8859-2"));
+        }
+
+        public static string GetSchoolName()
+        {
+            return ConfigurationManager.AppSettings["SchoolName"] ?? "Selma";
+        }
+
+        private static string GetRootPath()
+        {
+            var currentDirectory = new DirectoryInfo(Environment.CurrentDirectory);
+            var rootPath = currentDirectory.Parent.Parent.FullName;
+
+            return rootPath;
         }
     }
 }

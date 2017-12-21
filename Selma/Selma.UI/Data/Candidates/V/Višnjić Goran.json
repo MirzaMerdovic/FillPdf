@@ -1,0 +1,18 @@
+{
+  "CandidateId": "9036d5dbbe0e4f3c9844683f6be0ee07",
+  "FirstName": "Goran",
+  "LastName": "Vi¹njiæ",
+  "NameOfParent": null,
+  "Address": "Fra Gruje 13",
+  "PostalCode": "84100",
+  "City": "Bosanska Kostajnica",
+  "Citizenship": "BiH",
+  "Phone": "",
+  "DrivingLicence": {
+    "LicenceId": "",
+    "Category": "",
+    "IssuedOn": "2017-12-21T23:37:35.4729908+01:00",
+    "ExpiresOn": "2017-12-21T23:37:35.4707405+01:00",
+    "Notes": null
+  }
+}

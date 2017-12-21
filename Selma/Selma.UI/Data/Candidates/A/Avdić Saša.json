@@ -1,11 +1,18 @@
 {
-	"CandidateId" : 32,
-	"FirstName" : "Saša",
-	"LastName" : "Avdiæ",
-	"NameOfParent" : "Goran",
-	"Address" : "Bana Kulina 3",
-	"PostalCode" : "71000",
-	"City" : "Sarajevo",
-	"Citizeship" : "Bosna i Hercegovina",
-	"Phone" : "063 345 111"
+  "CandidateId": "2753a33c426e4d35af2ea6585377929f",
+  "FirstName": "Sa¹a",
+  "LastName": "Avdiæ",
+  "NameOfParent": null,
+  "Address": "Bana Kulina 3",
+  "PostalCode": "71000",
+  "City": "Sarajevo",
+  "Citizenship": "",
+  "Phone": "063 345 111",
+  "DrivingLicence": {
+    "LicenceId": "",
+    "Category": "",
+    "IssuedOn": "2017-12-21T23:40:16.9417774+01:00",
+    "ExpiresOn": "2017-12-21T23:40:16.9402744+01:00",
+    "Notes": null
+  }
 }

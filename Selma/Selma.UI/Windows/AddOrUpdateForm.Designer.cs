@@ -29,35 +29,36 @@
         private void InitializeComponent()
         {
             this.containerMain = new System.Windows.Forms.SplitContainer();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.lblFirstName = new System.Windows.Forms.Label();
-            this.txtFirstName = new System.Windows.Forms.TextBox();
-            this.txtLastName = new System.Windows.Forms.TextBox();
-            this.lblLastName = new System.Windows.Forms.Label();
-            this.txtAddress = new System.Windows.Forms.TextBox();
-            this.lblAddress = new System.Windows.Forms.Label();
-            this.txtNameOfParent = new System.Windows.Forms.TextBox();
-            this.lblParentName = new System.Windows.Forms.Label();
+            this.lblDrivingLicenceInfo = new System.Windows.Forms.Label();
+            this.lblCandidateInfo = new System.Windows.Forms.Label();
+            this.txtCategory = new System.Windows.Forms.TextBox();
+            this.lblCategory = new System.Windows.Forms.Label();
+            this.txtDrivingLicenceId = new System.Windows.Forms.TextBox();
+            this.lblDrivingLicenceId = new System.Windows.Forms.Label();
+            this.dtpExpiresOn = new System.Windows.Forms.DateTimePicker();
+            this.dtpIssueOn = new System.Windows.Forms.DateTimePicker();
+            this.lblExpiresOn = new System.Windows.Forms.Label();
+            this.lblissuedOn = new System.Windows.Forms.Label();
+            this.txtCitizenship = new System.Windows.Forms.TextBox();
+            this.lblCitizenship = new System.Windows.Forms.Label();
+            this.txtPhone = new System.Windows.Forms.TextBox();
+            this.lblPhone = new System.Windows.Forms.Label();
             this.txtCity = new System.Windows.Forms.TextBox();
             this.lblCity = new System.Windows.Forms.Label();
             this.txtPostalCode = new System.Windows.Forms.TextBox();
             this.lblPostalCode = new System.Windows.Forms.Label();
-            this.txtPhone = new System.Windows.Forms.TextBox();
-            this.lblPhone = new System.Windows.Forms.Label();
-            this.txtCitizenship = new System.Windows.Forms.TextBox();
-            this.lblCitizenship = new System.Windows.Forms.Label();
-            this.lblExpiresOn = new System.Windows.Forms.Label();
-            this.lblissuedOn = new System.Windows.Forms.Label();
-            this.dtpIssueOn = new System.Windows.Forms.DateTimePicker();
-            this.dtpExpiresOn = new System.Windows.Forms.DateTimePicker();
-            this.lblDrivingLicenceId = new System.Windows.Forms.Label();
-            this.txtDrivingLicenceId = new System.Windows.Forms.TextBox();
-            this.lblCategory = new System.Windows.Forms.Label();
-            this.txtCategory = new System.Windows.Forms.TextBox();
-            this.lblCandidateInfo = new System.Windows.Forms.Label();
-            this.lblDrivingLicenceInfo = new System.Windows.Forms.Label();
+            this.txtNameOfParent = new System.Windows.Forms.TextBox();
+            this.lblParentName = new System.Windows.Forms.Label();
+            this.txtAddress = new System.Windows.Forms.TextBox();
+            this.lblAddress = new System.Windows.Forms.Label();
+            this.txtLastName = new System.Windows.Forms.TextBox();
+            this.lblLastName = new System.Windows.Forms.Label();
+            this.txtFirstName = new System.Windows.Forms.TextBox();
+            this.lblFirstName = new System.Windows.Forms.Label();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnPrintExam = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.containerMain)).BeginInit();
             this.containerMain.Panel1.SuspendLayout();
             this.containerMain.Panel2.SuspendLayout();
@@ -73,6 +74,7 @@
             // 
             // containerMain.Panel1
             // 
+            this.containerMain.Panel1.Controls.Add(this.btnPrintExam);
             this.containerMain.Panel1.Controls.Add(this.lblDrivingLicenceInfo);
             this.containerMain.Panel1.Controls.Add(this.lblCandidateInfo);
             this.containerMain.Panel1.Controls.Add(this.txtCategory);
@@ -109,108 +111,123 @@
             this.containerMain.SplitterDistance = 427;
             this.containerMain.TabIndex = 0;
             // 
-            // btnDelete
+            // lblDrivingLicenceInfo
             // 
-            this.btnDelete.BackColor = System.Drawing.Color.Red;
-            this.btnDelete.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnDelete.Location = new System.Drawing.Point(348, 0);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(5);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(84, 45);
-            this.btnDelete.TabIndex = 0;
-            this.btnDelete.Text = "Obrisi";
-            this.btnDelete.UseVisualStyleBackColor = false;
-            this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
+            this.lblDrivingLicenceInfo.AutoSize = true;
+            this.lblDrivingLicenceInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDrivingLicenceInfo.Location = new System.Drawing.Point(29, 210);
+            this.lblDrivingLicenceInfo.Name = "lblDrivingLicenceInfo";
+            this.lblDrivingLicenceInfo.Size = new System.Drawing.Size(228, 13);
+            this.lblDrivingLicenceInfo.TabIndex = 29;
+            this.lblDrivingLicenceInfo.Text = "INFORMACIJE O VOZACKOJ DOZVOLI";
             // 
-            // btnEdit
+            // lblCandidateInfo
             // 
-            this.btnEdit.BackColor = System.Drawing.Color.LimeGreen;
-            this.btnEdit.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnEdit.Location = new System.Drawing.Point(264, 0);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(5);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(84, 45);
-            this.btnEdit.TabIndex = 1;
-            this.btnEdit.Text = "Izmijeni";
-            this.btnEdit.UseVisualStyleBackColor = false;
-            this.btnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
+            this.lblCandidateInfo.AutoSize = true;
+            this.lblCandidateInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCandidateInfo.Location = new System.Drawing.Point(29, 29);
+            this.lblCandidateInfo.Name = "lblCandidateInfo";
+            this.lblCandidateInfo.Size = new System.Drawing.Size(178, 13);
+            this.lblCandidateInfo.TabIndex = 28;
+            this.lblCandidateInfo.Text = "INFORMACIJE O KANDIDATU";
             // 
-            // btnAdd
+            // txtCategory
             // 
-            this.btnAdd.BackColor = System.Drawing.Color.LimeGreen;
-            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnAdd.Location = new System.Drawing.Point(0, 0);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(5);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(84, 45);
-            this.btnAdd.TabIndex = 2;
-            this.btnAdd.Text = "Spremi";
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
+            this.txtCategory.Location = new System.Drawing.Point(174, 253);
+            this.txtCategory.Name = "txtCategory";
+            this.txtCategory.Size = new System.Drawing.Size(104, 20);
+            this.txtCategory.TabIndex = 27;
             // 
-            // lblFirstName
+            // lblCategory
             // 
-            this.lblFirstName.AutoSize = true;
-            this.lblFirstName.Location = new System.Drawing.Point(26, 52);
-            this.lblFirstName.Name = "lblFirstName";
-            this.lblFirstName.Size = new System.Drawing.Size(24, 13);
-            this.lblFirstName.TabIndex = 0;
-            this.lblFirstName.Text = "Ime";
+            this.lblCategory.AutoSize = true;
+            this.lblCategory.Location = new System.Drawing.Point(171, 237);
+            this.lblCategory.Name = "lblCategory";
+            this.lblCategory.Size = new System.Drawing.Size(54, 13);
+            this.lblCategory.TabIndex = 26;
+            this.lblCategory.Text = "Kategorije";
             // 
-            // txtFirstName
+            // txtDrivingLicenceId
             // 
-            this.txtFirstName.Location = new System.Drawing.Point(29, 68);
-            this.txtFirstName.Name = "txtFirstName";
-            this.txtFirstName.Size = new System.Drawing.Size(100, 20);
-            this.txtFirstName.TabIndex = 1;
+            this.txtDrivingLicenceId.Location = new System.Drawing.Point(29, 253);
+            this.txtDrivingLicenceId.Name = "txtDrivingLicenceId";
+            this.txtDrivingLicenceId.Size = new System.Drawing.Size(100, 20);
+            this.txtDrivingLicenceId.TabIndex = 25;
             // 
-            // txtLastName
+            // lblDrivingLicenceId
             // 
-            this.txtLastName.Location = new System.Drawing.Point(135, 68);
-            this.txtLastName.Name = "txtLastName";
-            this.txtLastName.Size = new System.Drawing.Size(173, 20);
-            this.txtLastName.TabIndex = 3;
+            this.lblDrivingLicenceId.AutoSize = true;
+            this.lblDrivingLicenceId.Location = new System.Drawing.Point(26, 237);
+            this.lblDrivingLicenceId.Name = "lblDrivingLicenceId";
+            this.lblDrivingLicenceId.Size = new System.Drawing.Size(109, 13);
+            this.lblDrivingLicenceId.TabIndex = 24;
+            this.lblDrivingLicenceId.Text = "Broj vozacke dozvole";
             // 
-            // lblLastName
+            // dtpExpiresOn
             // 
-            this.lblLastName.AutoSize = true;
-            this.lblLastName.Location = new System.Drawing.Point(132, 52);
-            this.lblLastName.Name = "lblLastName";
-            this.lblLastName.Size = new System.Drawing.Size(44, 13);
-            this.lblLastName.TabIndex = 2;
-            this.lblLastName.Text = "Prezime";
+            this.dtpExpiresOn.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpExpiresOn.Location = new System.Drawing.Point(174, 292);
+            this.dtpExpiresOn.Name = "dtpExpiresOn";
+            this.dtpExpiresOn.Size = new System.Drawing.Size(104, 20);
+            this.dtpExpiresOn.TabIndex = 23;
             // 
-            // txtAddress
+            // dtpIssueOn
             // 
-            this.txtAddress.Location = new System.Drawing.Point(29, 107);
-            this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(279, 20);
-            this.txtAddress.TabIndex = 5;
+            this.dtpIssueOn.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpIssueOn.Location = new System.Drawing.Point(29, 292);
+            this.dtpIssueOn.Name = "dtpIssueOn";
+            this.dtpIssueOn.Size = new System.Drawing.Size(100, 20);
+            this.dtpIssueOn.TabIndex = 22;
             // 
-            // lblAddress
+            // lblExpiresOn
             // 
-            this.lblAddress.AutoSize = true;
-            this.lblAddress.Location = new System.Drawing.Point(26, 91);
-            this.lblAddress.Name = "lblAddress";
-            this.lblAddress.Size = new System.Drawing.Size(95, 13);
-            this.lblAddress.TabIndex = 4;
-            this.lblAddress.Text = "Adresa stanovanja";
+            this.lblExpiresOn.AutoSize = true;
+            this.lblExpiresOn.Location = new System.Drawing.Point(171, 276);
+            this.lblExpiresOn.Name = "lblExpiresOn";
+            this.lblExpiresOn.Size = new System.Drawing.Size(62, 13);
+            this.lblExpiresOn.TabIndex = 21;
+            this.lblExpiresOn.Text = "Istice dana:";
             // 
-            // txtNameOfParent
+            // lblissuedOn
             // 
-            this.txtNameOfParent.Location = new System.Drawing.Point(317, 68);
-            this.txtNameOfParent.Name = "txtNameOfParent";
-            this.txtNameOfParent.Size = new System.Drawing.Size(100, 20);
-            this.txtNameOfParent.TabIndex = 7;
+            this.lblissuedOn.AutoSize = true;
+            this.lblissuedOn.Location = new System.Drawing.Point(26, 276);
+            this.lblissuedOn.Name = "lblissuedOn";
+            this.lblissuedOn.Size = new System.Drawing.Size(66, 13);
+            this.lblissuedOn.TabIndex = 20;
+            this.lblissuedOn.Text = "Izdata dana:";
             // 
-            // lblParentName
+            // txtCitizenship
             // 
-            this.lblParentName.AutoSize = true;
-            this.lblParentName.Location = new System.Drawing.Point(314, 52);
-            this.lblParentName.Name = "lblParentName";
-            this.lblParentName.Size = new System.Drawing.Size(63, 13);
-            this.lblParentName.TabIndex = 6;
-            this.lblParentName.Text = "Ime roditelja";
+            this.txtCitizenship.Location = new System.Drawing.Point(317, 146);
+            this.txtCitizenship.Name = "txtCitizenship";
+            this.txtCitizenship.Size = new System.Drawing.Size(100, 20);
+            this.txtCitizenship.TabIndex = 19;
+            // 
+            // lblCitizenship
+            // 
+            this.lblCitizenship.AutoSize = true;
+            this.lblCitizenship.Location = new System.Drawing.Point(314, 130);
+            this.lblCitizenship.Name = "lblCitizenship";
+            this.lblCitizenship.Size = new System.Drawing.Size(71, 13);
+            this.lblCitizenship.TabIndex = 18;
+            this.lblCitizenship.Text = "Drzavljanstvo";
+            // 
+            // txtPhone
+            // 
+            this.txtPhone.Location = new System.Drawing.Point(317, 107);
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.Size = new System.Drawing.Size(100, 20);
+            this.txtPhone.TabIndex = 15;
+            // 
+            // lblPhone
+            // 
+            this.lblPhone.AutoSize = true;
+            this.lblPhone.Location = new System.Drawing.Point(314, 91);
+            this.lblPhone.Name = "lblPhone";
+            this.lblPhone.Size = new System.Drawing.Size(43, 13);
+            this.lblPhone.TabIndex = 14;
+            this.lblPhone.Text = "Telefon";
             // 
             // txtCity
             // 
@@ -244,123 +261,120 @@
             this.lblPostalCode.TabIndex = 10;
             this.lblPostalCode.Text = "Postanski broj";
             // 
-            // txtPhone
+            // txtNameOfParent
             // 
-            this.txtPhone.Location = new System.Drawing.Point(317, 107);
-            this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(100, 20);
-            this.txtPhone.TabIndex = 15;
+            this.txtNameOfParent.Location = new System.Drawing.Point(317, 68);
+            this.txtNameOfParent.Name = "txtNameOfParent";
+            this.txtNameOfParent.Size = new System.Drawing.Size(100, 20);
+            this.txtNameOfParent.TabIndex = 7;
             // 
-            // lblPhone
+            // lblParentName
             // 
-            this.lblPhone.AutoSize = true;
-            this.lblPhone.Location = new System.Drawing.Point(314, 91);
-            this.lblPhone.Name = "lblPhone";
-            this.lblPhone.Size = new System.Drawing.Size(43, 13);
-            this.lblPhone.TabIndex = 14;
-            this.lblPhone.Text = "Telefon";
+            this.lblParentName.AutoSize = true;
+            this.lblParentName.Location = new System.Drawing.Point(314, 52);
+            this.lblParentName.Name = "lblParentName";
+            this.lblParentName.Size = new System.Drawing.Size(63, 13);
+            this.lblParentName.TabIndex = 6;
+            this.lblParentName.Text = "Ime roditelja";
             // 
-            // txtCitizenship
+            // txtAddress
             // 
-            this.txtCitizenship.Location = new System.Drawing.Point(317, 146);
-            this.txtCitizenship.Name = "txtCitizenship";
-            this.txtCitizenship.Size = new System.Drawing.Size(100, 20);
-            this.txtCitizenship.TabIndex = 19;
+            this.txtAddress.Location = new System.Drawing.Point(29, 107);
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(279, 20);
+            this.txtAddress.TabIndex = 5;
             // 
-            // lblCitizenship
+            // lblAddress
             // 
-            this.lblCitizenship.AutoSize = true;
-            this.lblCitizenship.Location = new System.Drawing.Point(314, 130);
-            this.lblCitizenship.Name = "lblCitizenship";
-            this.lblCitizenship.Size = new System.Drawing.Size(71, 13);
-            this.lblCitizenship.TabIndex = 18;
-            this.lblCitizenship.Text = "Drzavljanstvo";
+            this.lblAddress.AutoSize = true;
+            this.lblAddress.Location = new System.Drawing.Point(26, 91);
+            this.lblAddress.Name = "lblAddress";
+            this.lblAddress.Size = new System.Drawing.Size(95, 13);
+            this.lblAddress.TabIndex = 4;
+            this.lblAddress.Text = "Adresa stanovanja";
             // 
-            // lblExpiresOn
+            // txtLastName
             // 
-            this.lblExpiresOn.AutoSize = true;
-            this.lblExpiresOn.Location = new System.Drawing.Point(171, 276);
-            this.lblExpiresOn.Name = "lblExpiresOn";
-            this.lblExpiresOn.Size = new System.Drawing.Size(62, 13);
-            this.lblExpiresOn.TabIndex = 21;
-            this.lblExpiresOn.Text = "Istice dana:";
+            this.txtLastName.Location = new System.Drawing.Point(135, 68);
+            this.txtLastName.Name = "txtLastName";
+            this.txtLastName.Size = new System.Drawing.Size(173, 20);
+            this.txtLastName.TabIndex = 3;
             // 
-            // lblissuedOn
+            // lblLastName
             // 
-            this.lblissuedOn.AutoSize = true;
-            this.lblissuedOn.Location = new System.Drawing.Point(26, 276);
-            this.lblissuedOn.Name = "lblissuedOn";
-            this.lblissuedOn.Size = new System.Drawing.Size(66, 13);
-            this.lblissuedOn.TabIndex = 20;
-            this.lblissuedOn.Text = "Izdata dana:";
+            this.lblLastName.AutoSize = true;
+            this.lblLastName.Location = new System.Drawing.Point(132, 52);
+            this.lblLastName.Name = "lblLastName";
+            this.lblLastName.Size = new System.Drawing.Size(44, 13);
+            this.lblLastName.TabIndex = 2;
+            this.lblLastName.Text = "Prezime";
             // 
-            // dtpIssueOn
+            // txtFirstName
             // 
-            this.dtpIssueOn.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpIssueOn.Location = new System.Drawing.Point(29, 292);
-            this.dtpIssueOn.Name = "dtpIssueOn";
-            this.dtpIssueOn.Size = new System.Drawing.Size(100, 20);
-            this.dtpIssueOn.TabIndex = 22;
+            this.txtFirstName.Location = new System.Drawing.Point(29, 68);
+            this.txtFirstName.Name = "txtFirstName";
+            this.txtFirstName.Size = new System.Drawing.Size(100, 20);
+            this.txtFirstName.TabIndex = 1;
             // 
-            // dtpExpiresOn
+            // lblFirstName
             // 
-            this.dtpExpiresOn.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpExpiresOn.Location = new System.Drawing.Point(174, 292);
-            this.dtpExpiresOn.Name = "dtpExpiresOn";
-            this.dtpExpiresOn.Size = new System.Drawing.Size(104, 20);
-            this.dtpExpiresOn.TabIndex = 23;
+            this.lblFirstName.AutoSize = true;
+            this.lblFirstName.Location = new System.Drawing.Point(26, 52);
+            this.lblFirstName.Name = "lblFirstName";
+            this.lblFirstName.Size = new System.Drawing.Size(24, 13);
+            this.lblFirstName.TabIndex = 0;
+            this.lblFirstName.Text = "Ime";
             // 
-            // lblDrivingLicenceId
+            // btnAdd
             // 
-            this.lblDrivingLicenceId.AutoSize = true;
-            this.lblDrivingLicenceId.Location = new System.Drawing.Point(26, 237);
-            this.lblDrivingLicenceId.Name = "lblDrivingLicenceId";
-            this.lblDrivingLicenceId.Size = new System.Drawing.Size(109, 13);
-            this.lblDrivingLicenceId.TabIndex = 24;
-            this.lblDrivingLicenceId.Text = "Broj vozacke dozvole";
+            this.btnAdd.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnAdd.Location = new System.Drawing.Point(0, 0);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(5);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(84, 45);
+            this.btnAdd.TabIndex = 2;
+            this.btnAdd.Text = "Spremi";
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
-            // txtDrivingLicenceId
+            // btnEdit
             // 
-            this.txtDrivingLicenceId.Location = new System.Drawing.Point(29, 253);
-            this.txtDrivingLicenceId.Name = "txtDrivingLicenceId";
-            this.txtDrivingLicenceId.Size = new System.Drawing.Size(100, 20);
-            this.txtDrivingLicenceId.TabIndex = 25;
+            this.btnEdit.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnEdit.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnEdit.Location = new System.Drawing.Point(264, 0);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(5);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(84, 45);
+            this.btnEdit.TabIndex = 1;
+            this.btnEdit.Text = "Izmijeni";
+            this.btnEdit.UseVisualStyleBackColor = false;
+            this.btnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
             // 
-            // lblCategory
+            // btnDelete
             // 
-            this.lblCategory.AutoSize = true;
-            this.lblCategory.Location = new System.Drawing.Point(171, 237);
-            this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(54, 13);
-            this.lblCategory.TabIndex = 26;
-            this.lblCategory.Text = "Kategorije";
+            this.btnDelete.BackColor = System.Drawing.Color.Red;
+            this.btnDelete.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnDelete.Location = new System.Drawing.Point(348, 0);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(5);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(84, 45);
+            this.btnDelete.TabIndex = 0;
+            this.btnDelete.Text = "Obrisi";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
-            // txtCategory
+            // btnPrintExam
             // 
-            this.txtCategory.Location = new System.Drawing.Point(174, 253);
-            this.txtCategory.Name = "txtCategory";
-            this.txtCategory.Size = new System.Drawing.Size(104, 20);
-            this.txtCategory.TabIndex = 27;
-            // 
-            // lblCandidateInfo
-            // 
-            this.lblCandidateInfo.AutoSize = true;
-            this.lblCandidateInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCandidateInfo.Location = new System.Drawing.Point(29, 29);
-            this.lblCandidateInfo.Name = "lblCandidateInfo";
-            this.lblCandidateInfo.Size = new System.Drawing.Size(178, 13);
-            this.lblCandidateInfo.TabIndex = 28;
-            this.lblCandidateInfo.Text = "INFORMACIJE O KANDIDATU";
-            // 
-            // lblDrivingLicenceInfo
-            // 
-            this.lblDrivingLicenceInfo.AutoSize = true;
-            this.lblDrivingLicenceInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDrivingLicenceInfo.Location = new System.Drawing.Point(29, 210);
-            this.lblDrivingLicenceInfo.Name = "lblDrivingLicenceInfo";
-            this.lblDrivingLicenceInfo.Size = new System.Drawing.Size(228, 13);
-            this.lblDrivingLicenceInfo.TabIndex = 29;
-            this.lblDrivingLicenceInfo.Text = "INFORMACIJE O VOZACKOJ DOZVOLI";
+            this.btnPrintExam.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnPrintExam.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnPrintExam.Location = new System.Drawing.Point(264, 391);
+            this.btnPrintExam.Name = "btnPrintExam";
+            this.btnPrintExam.Size = new System.Drawing.Size(165, 32);
+            this.btnPrintExam.TabIndex = 30;
+            this.btnPrintExam.Text = "Kreiraj prijavu";
+            this.btnPrintExam.UseVisualStyleBackColor = false;
+            this.btnPrintExam.Click += new System.EventHandler(this.BtnPrintExam_Click);
             // 
             // AddOrUpdateForm
             // 
@@ -412,5 +426,6 @@
         private System.Windows.Forms.TextBox txtDrivingLicenceId;
         private System.Windows.Forms.Label lblDrivingLicenceInfo;
         private System.Windows.Forms.Label lblCandidateInfo;
+        private System.Windows.Forms.Button btnPrintExam;
     }
 }
