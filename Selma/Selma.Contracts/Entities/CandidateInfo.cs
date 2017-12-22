@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Selma.Contracts.Entities
 {
@@ -28,8 +29,8 @@ namespace Selma.Contracts.Entities
 
         public string Occupancy { get; set; }
 
-        public string Notes { get; set; }
-
         public DrivingLicenceInfo DrivingLicence { get; set; }
+
+        public ICollection<ExamInfo> Exams { get; set; } = new List<ExamInfo>(0);
     }
 }

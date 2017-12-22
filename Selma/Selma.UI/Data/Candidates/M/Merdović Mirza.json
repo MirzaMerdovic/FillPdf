@@ -1,21 +1,30 @@
 {
-  "CandidateId": "50b5f04db6844e0bbb84ed763260a1e6",
+  "CandidateId": "444571ebe6c44fb2a3d80bdf0f6def49",
   "FirstName": "Mirza",
   "LastName": "Merdoviæ",
-  "NameOfParent": null,
+  "NameOfParent": "Dedo",
   "BirthDate": "0001-01-01T00:00:00",
   "Address": "Aleja Lipa 13",
   "PostalCode": "71000",
   "City": "Sarajevo",
   "Citizenship": "BiH",
   "Phone": "063 002 124",
-  "Jmbg": null,
-  "Occupancy": null,
+  "Jmbg": "0110984793413",
+  "Occupancy": "Kmet",
   "DrivingLicence": {
     "LicenceId": "4T56712U8",
     "Category": "B",
     "IssuedOn": "2014-06-11T14:44:58",
     "ExpiresOn": "2019-06-11T14:44:58",
-    "Notes": null
-  }
+    "Notes": ""
+  },
+  "Exams": [
+    {
+      "TakenOn": "2017-12-22T11:35:23.6582818+01:00",
+      "Category": "B",
+      "IncludesTrafficRegulationsTest": false,
+      "IncludesFirstAidTest": false,
+      "IncludesDrivingTest": true
+    }
+  ]
 }
