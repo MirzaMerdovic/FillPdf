@@ -30,21 +30,21 @@
         {
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Kandidati");
             this.containerMain = new System.Windows.Forms.SplitContainer();
+            this.containerCandidates = new System.Windows.Forms.SplitContainer();
+            this.btnAddCandidate = new System.Windows.Forms.Button();
             this.treeViewCandidates = new System.Windows.Forms.TreeView();
             this.dgvCandidates = new System.Windows.Forms.DataGridView();
             this.clmFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.containerCandidates = new System.Windows.Forms.SplitContainer();
-            this.btnAddCandidate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.containerMain)).BeginInit();
             this.containerMain.Panel1.SuspendLayout();
             this.containerMain.Panel2.SuspendLayout();
             this.containerMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCandidates)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.containerCandidates)).BeginInit();
             this.containerCandidates.Panel1.SuspendLayout();
             this.containerCandidates.Panel2.SuspendLayout();
             this.containerCandidates.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCandidates)).BeginInit();
             this.SuspendLayout();
             // 
             // containerMain
@@ -63,49 +63,6 @@
             this.containerMain.Size = new System.Drawing.Size(1022, 774);
             this.containerMain.SplitterDistance = 283;
             this.containerMain.TabIndex = 0;
-            // 
-            // treeViewCandidates
-            // 
-            this.treeViewCandidates.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeViewCandidates.Location = new System.Drawing.Point(0, 0);
-            this.treeViewCandidates.Name = "treeViewCandidates";
-            treeNode1.Name = "nodeCandidates";
-            treeNode1.Text = "Kandidati";
-            this.treeViewCandidates.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
-            this.treeViewCandidates.Size = new System.Drawing.Size(283, 724);
-            this.treeViewCandidates.TabIndex = 0;
-            this.treeViewCandidates.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.TreeViewCandidates_NodeMouseClick);
-            // 
-            // dgvCandidates
-            // 
-            this.dgvCandidates.AllowUserToAddRows = false;
-            this.dgvCandidates.AllowUserToDeleteRows = false;
-            this.dgvCandidates.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvCandidates.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmFirstName,
-            this.clmLastName});
-            this.dgvCandidates.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvCandidates.Location = new System.Drawing.Point(0, 0);
-            this.dgvCandidates.Name = "dgvCandidates";
-            this.dgvCandidates.ReadOnly = true;
-            this.dgvCandidates.RowHeadersVisible = false;
-            this.dgvCandidates.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCandidates.Size = new System.Drawing.Size(735, 774);
-            this.dgvCandidates.TabIndex = 0;
-            this.dgvCandidates.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvCandidates_CellDoubleClick);
-            // 
-            // clmFirstName
-            // 
-            this.clmFirstName.HeaderText = "Ime";
-            this.clmFirstName.Name = "clmFirstName";
-            this.clmFirstName.ReadOnly = true;
-            // 
-            // clmLastName
-            // 
-            this.clmLastName.HeaderText = "Prezime";
-            this.clmLastName.Name = "clmLastName";
-            this.clmLastName.ReadOnly = true;
             // 
             // containerCandidates
             // 
@@ -138,6 +95,50 @@
             this.btnAddCandidate.UseVisualStyleBackColor = false;
             this.btnAddCandidate.Click += new System.EventHandler(this.BtnAddCandidate_Click);
             // 
+            // treeViewCandidates
+            // 
+            this.treeViewCandidates.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeViewCandidates.Location = new System.Drawing.Point(0, 0);
+            this.treeViewCandidates.Name = "treeViewCandidates";
+            treeNode1.Name = "nodeCandidates";
+            treeNode1.Text = "Kandidati";
+            this.treeViewCandidates.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode1});
+            this.treeViewCandidates.Size = new System.Drawing.Size(283, 724);
+            this.treeViewCandidates.TabIndex = 0;
+            this.treeViewCandidates.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.TreeViewCandidates_NodeMouseClick);
+            // 
+            // dgvCandidates
+            // 
+            this.dgvCandidates.AllowUserToAddRows = false;
+            this.dgvCandidates.AllowUserToDeleteRows = false;
+            this.dgvCandidates.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvCandidates.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmFirstName,
+            this.clmLastName});
+            this.dgvCandidates.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvCandidates.Location = new System.Drawing.Point(0, 0);
+            this.dgvCandidates.MultiSelect = false;
+            this.dgvCandidates.Name = "dgvCandidates";
+            this.dgvCandidates.ReadOnly = true;
+            this.dgvCandidates.RowHeadersVisible = false;
+            this.dgvCandidates.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvCandidates.Size = new System.Drawing.Size(735, 774);
+            this.dgvCandidates.TabIndex = 0;
+            this.dgvCandidates.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvCandidates_CellDoubleClick);
+            // 
+            // clmFirstName
+            // 
+            this.clmFirstName.HeaderText = "Ime";
+            this.clmFirstName.Name = "clmFirstName";
+            this.clmFirstName.ReadOnly = true;
+            // 
+            // clmLastName
+            // 
+            this.clmLastName.HeaderText = "Prezime";
+            this.clmLastName.Name = "clmLastName";
+            this.clmLastName.ReadOnly = true;
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -145,17 +146,18 @@
             this.ClientSize = new System.Drawing.Size(1022, 774);
             this.Controls.Add(this.containerMain);
             this.Name = "FrmMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Auto Skola - Selma";
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.containerMain.Panel1.ResumeLayout(false);
             this.containerMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.containerMain)).EndInit();
             this.containerMain.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCandidates)).EndInit();
             this.containerCandidates.Panel1.ResumeLayout(false);
             this.containerCandidates.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.containerCandidates)).EndInit();
             this.containerCandidates.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCandidates)).EndInit();
             this.ResumeLayout(false);
 
         }

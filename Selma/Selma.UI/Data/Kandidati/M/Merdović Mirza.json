@@ -1,5 +1,5 @@
 {
-  "CandidateId": "444571ebe6c44fb2a3d80bdf0f6def49",
+  "CandidateId": "969ac548bbf94a8ca5dbc7afe2401dd2",
   "FirstName": "Mirza",
   "LastName": "Merdoviæ",
   "NameOfParent": "Dedo",
@@ -20,10 +20,17 @@
   },
   "Exams": [
     {
-      "TakenOn": "2017-12-22T11:35:23.6582818+01:00",
+      "TakenOn": "2017-11-23T13:43:11",
       "Category": "B",
       "IncludesTrafficRegulationsTest": false,
       "IncludesFirstAidTest": false,
+      "IncludesDrivingTest": true
+    },
+    {
+      "TakenOn": "2017-12-22T15:28:51.1852425+01:00",
+      "Category": "B",
+      "IncludesTrafficRegulationsTest": false,
+      "IncludesFirstAidTest": true,
       "IncludesDrivingTest": true
     }
   ]

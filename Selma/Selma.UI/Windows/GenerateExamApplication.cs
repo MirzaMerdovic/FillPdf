@@ -52,7 +52,7 @@ namespace Selma.UI.Windows
         private void CreateExamForm(string templatePath, CandidateInfo info)
         {
             var reader = new PdfReader(templatePath);
-            var stamper = new PdfStamper(reader, new FileStream(Path.Combine(Helper.GetTempFolder(), $"{info.LastName} {info.FirstName}.pdf"), FileMode.Create));
+            var stamper = new PdfStamper(reader, new FileStream(Path.Combine(Helper.GetExamApplicationsFolder(), $"{info.LastName} {info.FirstName}_{dtpTakenOn.Value.ToShortDateString()}.pdf"), FileMode.Create));
 
             stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(390, 570, 120, 12)), "CandidateFullName", $"{info.LastName} {info.FirstName}").GetTextField(), 1);
             stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(390, 554, 120, 12)), "CandidateParentName", info.NameOfParent).GetTextField(), 1);

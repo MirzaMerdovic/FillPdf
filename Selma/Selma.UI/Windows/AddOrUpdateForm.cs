@@ -1,6 +1,7 @@
 ﻿using Selma.Contracts.Entities;
 using Selma.DataAccess;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 
@@ -8,9 +9,15 @@ namespace Selma.UI.Windows
 {
     public partial class AddOrUpdateForm : Form
     {
+        #region Fields
+
         private CandidateInfo _info;
         private TreeView _treeView;
         private readonly ICandidateInfoRepository _repository;
+
+        #endregion
+
+        #region Constructors
 
         public AddOrUpdateForm()
         {
@@ -21,33 +28,29 @@ namespace Selma.UI.Windows
 
         public AddOrUpdateForm(bool isAdd, CandidateInfo info, TreeView treeView) : this()
         {
-            if (isAdd)
-            {
-                btnDelete.Visible = false;
-                btnDelete.Enabled = false;
-                btnEdit.Visible = false;
-                btnEdit.Enabled = false;
-                btnAdd.Visible = true;
-                btnAdd.Enabled = true;
-            }
-            else
-            {
-                btnDelete.Visible = true;
-                btnDelete.Enabled = true;
-                btnEdit.Visible = true;
-                btnEdit.Enabled = true;
-                btnAdd.Visible = false;
-                btnAdd.Enabled = false;
-            }
+            SetButtons(isAdd);
 
             _info = info;
             _treeView = treeView;
         }
 
+        #endregion
+
+        #region Form Events
+
         private void AddOrUpdateForm_Load(object sender, EventArgs e)
         {
             BindValues(_info);
         }
+
+        private void AddOrUpdateForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SharedViewLogic.LoadTreeView(_treeView, _repository);
+        }
+
+        #endregion
+
+        #region Button Events
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
@@ -72,6 +75,59 @@ namespace Selma.UI.Windows
             Close();
         }
 
+        private void BtnPrintExam_Click(object sender, EventArgs e)
+        {
+            var templatePath = Helper.GetPdfTemplateLocation();
+
+            if (!File.Exists(templatePath))
+                MessageBox.Show($"Prazna PDF Prijava mora postajati na lokaciji: {templatePath}");
+            else
+            {
+                var info = GetCandidateInfo();
+                new GenerateExamApplication(info, _repository).Show();
+            }
+        }
+
+        #endregion
+
+        #region DatagridView Events
+
+        private void DgvExamHistory_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var cell = dgvExamHistory.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            var selectedRow = dgvExamHistory.Rows[e.RowIndex];
+
+            if (e.ColumnIndex == 5)
+            {
+                var selectedExam = selectedRow.Tag as ExamInfo;
+                
+                // TODO: Print exam application
+                return;
+            }
+
+            if (e.ColumnIndex == 6)
+            {
+                dgvExamHistory.Rows.Remove(selectedRow);
+            }
+        }
+
+        #endregion
+
+        #region Helpers
+
+        private void SetButtons(bool isAdd)
+        {
+            if (isAdd)
+            {
+                btnDelete.Visible = btnDelete.Enabled = btnEdit.Visible = btnEdit.Enabled = false;
+                btnAdd.Visible = btnAdd.Enabled = true;
+            }
+            else
+            {
+                btnDelete.Visible = btnDelete.Enabled = btnEdit.Visible = btnEdit.Enabled = true;
+                btnAdd.Visible = btnAdd.Enabled = false;
+            }
+        }
 
         private void BindValues(CandidateInfo info)
         {
@@ -95,24 +151,23 @@ namespace Selma.UI.Windows
 
             if (info.DrivingLicence != null)
                 dtpExpiresOn.Value = info.DrivingLicence.ExpiresOn;
-        }
 
-        private void BtnPrintExam_Click(object sender, EventArgs e)
-        {
-            var templatePath = Helper.GetPdfTemplateLocation();
 
-            if (!File.Exists(templatePath))
-                MessageBox.Show($"Prazna PDF Prijava mora postajati na lokaciji: {templatePath}");
-            else
+            foreach (var exam in info.Exams)
             {
-                var info = GetCandidateInfo();
-                new GenerateExamApplication(info, _repository).Show();
-            }
-        }
+                var index = dgvExamHistory.Rows.Add(
+                    exam.Category,
+                    exam.TakenOn.Date.ToShortDateString(),
+                    exam.IncludesTrafficRegulationsTest,
+                    exam.IncludesFirstAidTest,
+                    exam.IncludesDrivingTest);
 
-        private void AddOrUpdateForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            SharedViewLogic.LoadTreeView(_treeView, _repository);
+                dgvExamHistory.Rows[index].Tag = exam;
+                dgvExamHistory.Rows[index].Cells["clmPrint"].Value = "Print";
+
+                dgvExamHistory.Rows[index].Tag = exam;
+                dgvExamHistory.Rows[index].Cells["clmDelete"].Value = "Obrisi";
+            }
         }
 
         private CandidateInfo GetCandidateInfo()
@@ -136,8 +191,28 @@ namespace Selma.UI.Windows
                     IssuedOn = dtpIssueOn.Value,
                     ExpiresOn = dtpExpiresOn.Value,
                     Notes = txtNotes.Text.Trim()
-                }
+                },
+               Exams = GetExams(dgvExamHistory.Rows)
             };
         }
+
+        private static ICollection<ExamInfo> GetExams(DataGridViewRowCollection rows)
+        {
+            var exams = new List<ExamInfo>();
+
+            foreach (DataGridViewRow row in rows)
+            {
+                var exam = row.Tag as ExamInfo;
+
+                if (exam == null)
+                    continue;
+
+                exams.Add(exam);
+            }
+
+            return exams;
+        }
+
+        #endregion
     }
 }

@@ -14,9 +14,9 @@ namespace Selma.DataAccess
             return templateLocation;
         }
 
-        public static string GetTempFolder()
+        public static string GetExamApplicationsFolder()
         {
-            var tempPath = Path.Combine(GetRootPath(), @"Data\Temp");
+            var tempPath = Path.Combine(GetRootPath(), @"Data\Prijave");
 
             if (!Directory.Exists(tempPath))
                 Directory.CreateDirectory(tempPath);
@@ -27,7 +27,7 @@ namespace Selma.DataAccess
         public static string GetOrCreateDataPath()
         {
             var rootPath = GetRootPath();
-            var dataPath = Path.Combine(rootPath, @"Data\Candidates");
+            var dataPath = Path.Combine(rootPath, @"Data\Kandidati");
 
             if (!Directory.Exists(dataPath))
                 Directory.CreateDirectory(dataPath);
