@@ -64,9 +64,6 @@
             this.txtCitizenship = new System.Windows.Forms.TextBox();
             this.lblissuedOn = new System.Windows.Forms.Label();
             this.dgvExamHistory = new System.Windows.Forms.DataGridView();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
             this.clmCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTakenOn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmIncludesTrafficRegulation = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -74,6 +71,9 @@
             this.clmIncludesDriving = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.clmPrint = new System.Windows.Forms.DataGridViewButtonColumn();
             this.clmDelete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.containerMain)).BeginInit();
             this.containerMain.Panel1.SuspendLayout();
             this.containerMain.Panel2.SuspendLayout();
@@ -454,45 +454,6 @@
             this.dgvExamHistory.TabIndex = 0;
             this.dgvExamHistory.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvExamHistory_CellContentClick);
             // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.Color.LimeGreen;
-            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnAdd.Location = new System.Drawing.Point(0, 0);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(5);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(84, 45);
-            this.btnAdd.TabIndex = 2;
-            this.btnAdd.Text = "Spremi";
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.BackColor = System.Drawing.Color.LimeGreen;
-            this.btnEdit.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnEdit.Location = new System.Drawing.Point(720, 0);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(5);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(84, 45);
-            this.btnEdit.TabIndex = 1;
-            this.btnEdit.Text = "Izmijeni";
-            this.btnEdit.UseVisualStyleBackColor = false;
-            this.btnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.BackColor = System.Drawing.Color.Red;
-            this.btnDelete.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnDelete.Location = new System.Drawing.Point(804, 0);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(5);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(84, 45);
-            this.btnDelete.TabIndex = 0;
-            this.btnDelete.Text = "Obrisi";
-            this.btnDelete.UseVisualStyleBackColor = false;
-            this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
-            // 
             // clmCategory
             // 
             this.clmCategory.HeaderText = "Kategorija";
@@ -538,6 +499,45 @@
             this.clmDelete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmDelete.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnAdd.Location = new System.Drawing.Point(0, 0);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(5);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(84, 45);
+            this.btnAdd.TabIndex = 2;
+            this.btnAdd.Text = "Spremi";
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnEdit.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnEdit.Location = new System.Drawing.Point(720, 0);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(5);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(84, 45);
+            this.btnEdit.TabIndex = 1;
+            this.btnEdit.Text = "Izmijeni";
+            this.btnEdit.UseVisualStyleBackColor = false;
+            this.btnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.BackColor = System.Drawing.Color.Red;
+            this.btnDelete.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnDelete.Location = new System.Drawing.Point(804, 0);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(5);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(84, 45);
+            this.btnDelete.TabIndex = 0;
+            this.btnDelete.Text = "Obrisi";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
+            // 
             // AddOrUpdateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -548,10 +548,8 @@
             this.MinimizeBox = false;
             this.Name = "AddOrUpdateForm";
             this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddOrUpdateForm";
-            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddOrUpdateForm_FormClosing);
             this.Load += new System.EventHandler(this.AddOrUpdateForm_Load);
             this.containerMain.Panel1.ResumeLayout(false);

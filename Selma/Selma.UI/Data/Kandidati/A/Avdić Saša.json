@@ -1,18 +1,32 @@
 {
-  "CandidateId": "2753a33c426e4d35af2ea6585377929f",
+  "CandidateId": "601ee3d075554064b45d2a3f013313bb",
   "FirstName": "Sa¹a",
   "LastName": "Avdiæ",
-  "NameOfParent": null,
+  "NameOfParent": "Avdija",
+  "BirthDate": "0001-01-01T00:00:00",
   "Address": "Bana Kulina 3",
   "PostalCode": "71000",
   "City": "Sarajevo",
-  "Citizenship": "",
+  "Citizenship": "BiH",
   "Phone": "063 345 111",
+  "Jmbg": "1231231237",
+  "Occupancy": "Automehanicar",
   "DrivingLicence": {
     "LicenceId": "",
     "Category": "",
     "IssuedOn": "2017-12-21T23:40:16.9417774+01:00",
     "ExpiresOn": "2017-12-21T23:40:16.9402744+01:00",
-    "Notes": null
-  }
+    "Notes": ""
+  },
+  "Exams": [
+    {
+      "Id": null,
+      "TakenOn": "2017-12-26T10:50:43.8575418+01:00",
+      "Category": "B",
+      "IncludesTrafficRegulationsTest": false,
+      "IncludesFirstAidTest": true,
+      "IncludesDrivingTest": true,
+      "Path": "C:\\Users\\mirza\\Source\\Repos\\FillPdf\\Selma\\Selma.UI\\Data\\Prijave\\Avdiæ Sa¹a_636498822438575418.pdf"
+    }
+  ]
 }

@@ -32,7 +32,7 @@ namespace Selma.UI.Windows
 
         private void BtnGenerate_Click(object sender, EventArgs e)
         {
-            CreateExamForm(Helper.GetPdfTemplateLocation(), _info);
+            var path = CreateExamForm(Helper.GetPdfTemplateLocation(), _info);
 
             var info = _repository.Get(_info.FirstName, _info.LastName);
             info.Exams.Add(new ExamInfo
@@ -41,7 +41,8 @@ namespace Selma.UI.Windows
                 TakenOn = dtpTakenOn.Value,
                 IncludesTrafficRegulationsTest = chxIncludesTrafficRegulationTest.Checked,
                 IncludesFirstAidTest = chxIncludesFirstAidTest.Checked,
-                IncludesDrivingTest = chxIncludesDrivingTest.Checked
+                IncludesDrivingTest = chxIncludesDrivingTest.Checked,
+                Path = path
             });
 
             _repository.Update(info);
@@ -49,14 +50,24 @@ namespace Selma.UI.Windows
             Close();
         }
 
-        private void CreateExamForm(string templatePath, CandidateInfo info)
+        private string CreateExamForm(string templatePath, CandidateInfo info)
         {
+            var path = Path.Combine(Helper.GetExamApplicationsFolder(), $"{info.LastName} {info.FirstName}_{dtpTakenOn.Value.Ticks}.pdf");
             var reader = new PdfReader(templatePath);
-            var stamper = new PdfStamper(reader, new FileStream(Path.Combine(Helper.GetExamApplicationsFolder(), $"{info.LastName} {info.FirstName}_{dtpTakenOn.Value.ToShortDateString()}.pdf"), FileMode.Create));
+            var stamper = new PdfStamper(reader, new FileStream(path, FileMode.Create));
+
+            if(chxIncludesTrafficRegulationTest.Checked)
+                stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(28, 648, 12, 12)), "IncludeTrafficRegulations", "X").GetTextField(), 1);
+
+            if(chxIncludesFirstAidTest.Checked)
+                stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(28, 634, 12, 12)), "IncludeFirstAid", "X").GetTextField(), 1);
+
+            if(chxIncludesDrivingTest.Checked)
+                stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(28, 620, 12, 12)), "IncludeDriving", "X").GetTextField(), 1);
 
             stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(390, 570, 120, 12)), "CandidateFullName", $"{info.LastName} {info.FirstName}").GetTextField(), 1);
             stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(390, 554, 120, 12)), "CandidateParentName", info.NameOfParent).GetTextField(), 1);
-            stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(390, 538, 120, 12)), "CandidateBirthDayAndDate", $"{info.BirthDate} {info.City}").GetTextField(), 1);
+            stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(390, 538, 120, 12)), "CandidateBirthDayAndDate", $"{info.BirthDate.ToShortDateString()} {info.City}").GetTextField(), 1);
             stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(390, 524, 120, 12)), "CandidateJmbg", info.Jmbg).GetTextField(), 1);
             stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(390, 508, 120, 12)), "CandidateCitizenship", info.Citizenship).GetTextField(), 1);
             stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(390, 492, 120, 12)), "CandidateOccupancy", info.Occupancy).GetTextField(), 1);
@@ -64,13 +75,15 @@ namespace Selma.UI.Windows
             stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(390, 460, 120, 12)), "CandidateDrivingLicenceCategory", txtCategory.Text.Trim()).GetTextField(), 1);
             stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(390, 444, 120, 12)), "CandidateDrivingSchoolName", Helper.GetSchoolName()).GetTextField(), 1);
             stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(390, 428, 120, 12)), "CandidateExamCount", $"{info.Exams.Count + 1}").GetTextField(), 1);
-            stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(390, 414, 120, 12)), "CandidateHasDrivingLicence", info.DrivingLicence == null ? "Nema" : $"{info.DrivingLicence.Category}, {info.DrivingLicence.LicenceId}, {info.DrivingLicence.IssuedOn.ToShortDateString()}").GetTextField(), 1);
+            stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(390, 414, 120, 12)), "CandidateHasDrivingLicence", string.IsNullOrWhiteSpace(info.DrivingLicence.LicenceId) ? "Nema" : $"{info.DrivingLicence.Category}, {info.DrivingLicence.LicenceId}, {info.DrivingLicence.IssuedOn.ToShortDateString()}").GetTextField(), 1);
             stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(390, 400, 120, 12)), "CandidateCanHaveDrivingLicence", info.DrivingLicence?.Notes).GetTextField(), 1);
             stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(110, 69, 40, 12)), "CandidateDayAndMonth", $"{DateTime.Now.Day}.{DateTime.Now.Month}").GetTextField(), 1);
             stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(185, 69, 40, 12)), "CandidateYear", DateTime.Now.Year.ToString().Substring(2, 2)).GetTextField(), 1);
 
             stamper.FormFlattening = true;
             stamper.Close();
+
+            return path;
         }
 
         private static TextField Create(PdfWriter writer, Rectangle rectangle, string fieldName, string value)

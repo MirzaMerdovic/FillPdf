@@ -1,8 +1,11 @@
 ﻿using Selma.Contracts.Entities;
 using Selma.DataAccess;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Selma.UI.Windows
@@ -11,8 +14,9 @@ namespace Selma.UI.Windows
     {
         #region Fields
 
-        private CandidateInfo _info;
-        private TreeView _treeView;
+        private readonly CandidateInfo _info;
+        private readonly TreeView _treeView;
+        private readonly DataGridView _dgvCandidates;
         private readonly ICandidateInfoRepository _repository;
 
         #endregion
@@ -26,12 +30,13 @@ namespace Selma.UI.Windows
             _repository = new CandidateInfoRepository();
         }
 
-        public AddOrUpdateForm(bool isAdd, CandidateInfo info, TreeView treeView) : this()
+        public AddOrUpdateForm(bool isAdd, CandidateInfo info, TreeView treeView, DataGridView dgvCandidates) : this()
         {
             SetButtons(isAdd);
 
             _info = info;
             _treeView = treeView;
+            _dgvCandidates = dgvCandidates;
         }
 
         #endregion
@@ -45,7 +50,7 @@ namespace Selma.UI.Windows
 
         private void AddOrUpdateForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            SharedViewLogic.LoadTreeView(_treeView, _repository);
+            SharedViewLogic.LoadCandidatesTree(_treeView, _repository);
         }
 
         #endregion
@@ -56,7 +61,12 @@ namespace Selma.UI.Windows
         {
             var info = GetCandidateInfo();
             _repository.Create(info);
-            
+
+            SharedViewLogic.LoadCandidatesTree(_treeView, _repository);
+
+            var selectedNode = GetOrAddParentNode(info);
+            SharedViewLogic.LoadCandidatesGrid(_dgvCandidates, selectedNode.Nodes);
+
             Close();
         }
 
@@ -64,13 +74,23 @@ namespace Selma.UI.Windows
         {
             var info = GetCandidateInfo();
             _repository.Update(info);
-            
+
+            SharedViewLogic.LoadCandidatesTree(_treeView, _repository);
+
+            if (_dgvCandidates.SelectedRows.Count > 0)
+                _dgvCandidates.SelectedRows[0].Tag = info;
+
             Close();
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
             _repository.Delete(txtFirstName.Text.Trim(), txtLastName.Text.Trim());
+
+            SharedViewLogic.LoadCandidatesTree(_treeView, _repository);
+
+            var parentNode = _treeView.Nodes.Find(_info.LastName.First().ToString(), false).First();
+            SharedViewLogic.LoadCandidatesGrid(_dgvCandidates, parentNode.Nodes);
 
             Close();
         }
@@ -80,7 +100,9 @@ namespace Selma.UI.Windows
             var templatePath = Helper.GetPdfTemplateLocation();
 
             if (!File.Exists(templatePath))
+            {
                 MessageBox.Show($"Prazna PDF Prijava mora postajati na lokaciji: {templatePath}");
+            }
             else
             {
                 var info = GetCandidateInfo();
@@ -94,17 +116,20 @@ namespace Selma.UI.Windows
 
         private void DgvExamHistory_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var cell = dgvExamHistory.Rows[e.RowIndex].Cells[e.ColumnIndex];
             var selectedRow = dgvExamHistory.Rows[e.RowIndex];
 
+            // Open the file.
             if (e.ColumnIndex == 5)
             {
-                var selectedExam = selectedRow.Tag as ExamInfo;
-                
-                // TODO: Print exam application
+                if (!(selectedRow.Tag is ExamInfo selectedExam) || !File.Exists(selectedExam?.Path))
+                    return;
+
+                Process.Start(selectedExam.Path);
+
                 return;
             }
 
+            // Remove from grid view.
             if (e.ColumnIndex == 6)
             {
                 dgvExamHistory.Rows.Remove(selectedRow);
@@ -192,11 +217,11 @@ namespace Selma.UI.Windows
                     ExpiresOn = dtpExpiresOn.Value,
                     Notes = txtNotes.Text.Trim()
                 },
-               Exams = GetExams(dgvExamHistory.Rows)
+                Exams = GetExams(dgvExamHistory.Rows)
             };
         }
 
-        private static ICollection<ExamInfo> GetExams(DataGridViewRowCollection rows)
+        private static ICollection<ExamInfo> GetExams(IEnumerable rows)
         {
             var exams = new List<ExamInfo>();
 
@@ -211,6 +236,35 @@ namespace Selma.UI.Windows
             }
 
             return exams;
+        }
+
+        private TreeNode GetOrAddParentNode(CandidateInfo info)
+        {
+            var selectedNode = _treeView.Nodes.Find(info.LastName.First().ToString(), false).FirstOrDefault();
+
+            if (selectedNode != null)
+                return selectedNode;
+
+            var index = _treeView.Nodes.Add(
+                new TreeNode
+                {
+                    Name = info.LastName.First().ToString(),
+                    Text = info.LastName.First().ToString(),
+                    Tag = "parent",
+                    Nodes =
+                    {
+                        new TreeNode
+                        {
+                            Name = $"{info.LastName} {info.FirstName}",
+                            Text = $"{info.LastName} {info.FirstName}",
+                            Tag = info
+                        }
+                    }
+                });
+
+            selectedNode = _treeView.Nodes[index];
+
+            return selectedNode;
         }
 
         #endregion

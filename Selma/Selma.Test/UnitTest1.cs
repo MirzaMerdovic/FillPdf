@@ -17,6 +17,10 @@ namespace Selma.Test
             PdfReader reader = new PdfReader(PdfFileLocation);
             PdfStamper stamper = new PdfStamper(reader, new FileStream(@"C:\Users\mirza\Source\Repos\FillPdf\Selma\Selma.Test\PdfTest.pdf", FileMode.Create));
 
+            stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(28, 648, 12, 12)), "IncludeTrafficRegulations", "X").GetTextField(), 1);
+            stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(28, 634, 12, 12)), "IncludeFirstAid", "X").GetTextField(), 1);
+            stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(28, 620, 12, 12)), "IncludeDriving", "X").GetTextField(), 1);
+
             // Ime i prezime
             stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(390, 570, 120, 12)), "CandidateFullName", "Mirza Merdović").GetTextField(), 1);
 

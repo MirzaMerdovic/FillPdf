@@ -4,6 +4,8 @@ namespace Selma.Contracts.Entities
 {
     public class ExamInfo
     {
+        public string Id { get; set; }
+
         public DateTime TakenOn { get; set; }
 
         public string Category { get; set; }
@@ -13,5 +15,7 @@ namespace Selma.Contracts.Entities
         public bool IncludesFirstAidTest { get; set; }
 
         public bool IncludesDrivingTest { get; set; }
+
+        public string Path { get; set; }
     }
 }

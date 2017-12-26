@@ -19,7 +19,7 @@ namespace Selma.UI
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            SharedViewLogic.LoadTreeView(treeViewCandidates, _repository);
+            SharedViewLogic.LoadCandidatesTree(treeViewCandidates, _repository);
         }
 
         private void TreeViewCandidates_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -32,24 +32,19 @@ namespace Selma.UI
             node.ExpandAll();
             dgvCandidates.Rows.Clear();
 
-            foreach (TreeNode child in node.Nodes)
-            {
-                var info = (CandidateInfo)child.Tag;
-             
-                var index = dgvCandidates.Rows.Add(info.FirstName, info.LastName);
-                dgvCandidates.Rows[index].Tag = info;
-            }
+            SharedViewLogic.LoadCandidatesGrid(dgvCandidates, node.Nodes);
         }
 
         private void DgvCandidates_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             var row = dgvCandidates.Rows[e.RowIndex];
-            new AddOrUpdateForm(false, row.Tag as CandidateInfo, treeViewCandidates){Text = "Detalji o kandidatu"}.Show();
+
+            new AddOrUpdateForm(false, row.Tag as CandidateInfo, treeViewCandidates, dgvCandidates){Text = "Detalji o kandidatu"}.Show();
         }
 
         private void BtnAddCandidate_Click(object sender, EventArgs e)
         {
-            new AddOrUpdateForm(true, new CandidateInfo(), treeViewCandidates) { Text = "Dodaj novog kandidata" }.Show();
+            new AddOrUpdateForm(true, new CandidateInfo(), treeViewCandidates, dgvCandidates) { Text = "Dodaj novog kandidata" }.Show();
         }
     }
 }

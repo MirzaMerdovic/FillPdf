@@ -112,6 +112,7 @@
             // 
             this.dgvCandidates.AllowUserToAddRows = false;
             this.dgvCandidates.AllowUserToDeleteRows = false;
+            this.dgvCandidates.AllowUserToResizeRows = false;
             this.dgvCandidates.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCandidates.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmFirstName,

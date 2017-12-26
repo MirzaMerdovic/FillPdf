@@ -142,10 +142,8 @@
             this.MinimizeBox = false;
             this.Name = "GenerateExamApplication";
             this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Kreiraj prijavu";
-            this.TopMost = true;
             this.Load += new System.EventHandler(this.GenerateExamApplication_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
