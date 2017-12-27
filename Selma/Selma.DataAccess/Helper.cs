@@ -2,11 +2,14 @@
 using System.Configuration;
 using System.IO;
 using System.Text;
+using NLog;
 
 namespace Selma.DataAccess
 {
     public static class Helper
     {
+        public static readonly ILogger Logger = LogManager.GetLogger("selma");
+
         public static string GetPdfTemplateLocation()
         {
             var templateLocation = Path.Combine(GetRootPath(), @"Data\Prazna.pdf");
@@ -22,6 +25,16 @@ namespace Selma.DataAccess
                 Directory.CreateDirectory(tempPath);
 
             return tempPath;
+        }
+
+        public static string GetLogsLocation()
+        {
+            var logPath = Path.Combine(GetRootPath(), DateTime.Now.Date.ToString("ddmmYYYY"));
+
+            if (!Directory.Exists(logPath))
+                Directory.CreateDirectory(logPath);
+
+            return logPath;
         }
 
         public static string GetOrCreateDataPath()
@@ -45,7 +58,7 @@ namespace Selma.DataAccess
             return parentPath;
         }
 
-        public static void SaveCandidate(string path, string candidateJson)
+        public static void SaveCandidateJson(string path, string candidateJson)
         {
             File.WriteAllText(path, candidateJson, Encoding.GetEncoding("ISO-8859-2"));
         }

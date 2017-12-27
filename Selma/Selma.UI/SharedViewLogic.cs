@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.IO;
 using System.Windows.Forms;
 using Selma.Contracts.Entities;
@@ -10,31 +11,45 @@ namespace Selma.UI
     {
         public static void LoadCandidatesTree(TreeView root, ICandidateInfoRepository repository)
         {
-            root.Nodes.Clear();
-
-            var rootDirectory = new DirectoryInfo(Helper.GetOrCreateDataPath());
-
-            foreach (var directory in rootDirectory.GetDirectories("*", SearchOption.TopDirectoryOnly))
+            try
             {
-                var item = new TreeNode { Name = $"{directory.Name}", Text = directory.Name, Tag = "parent" };
-                root.Nodes.Add(item);
+                root.Nodes.Clear();
 
-                LoadCandidates(item, directory, repository);
+                var rootDirectory = new DirectoryInfo(Helper.GetOrCreateDataPath());
+
+                foreach (var directory in rootDirectory.GetDirectories("*", SearchOption.TopDirectoryOnly))
+                {
+                    var item = new TreeNode { Name = $"{directory.Name}", Text = directory.Name, Tag = "parent" };
+                    root.Nodes.Add(item);
+
+                    LoadCandidates(item, directory, repository);
+                }
+
+                root.ExpandAll();
             }
-
-            root.ExpandAll();
+            catch (Exception e)
+            {
+                Helper.Logger.Error($"Method: LoadCandidatesTree, {Environment.NewLine} Error: {e.Message}{Environment.NewLine}{e}");
+            }
         }
 
         public static void LoadCandidatesGrid(DataGridView dgvCandidates, IEnumerable nodes)
         {
-            dgvCandidates.Rows.Clear();
-
-            foreach (TreeNode child in nodes)
+            try
             {
-                var info = (CandidateInfo)child.Tag;
+                dgvCandidates.Rows.Clear();
 
-                var index = dgvCandidates.Rows.Add(info.FirstName, info.LastName);
-                dgvCandidates.Rows[index].Tag = info;
+                foreach (TreeNode child in nodes)
+                {
+                    var info = (CandidateInfo)child.Tag;
+
+                    var index = dgvCandidates.Rows.Add(info.FirstName, info.LastName);
+                    dgvCandidates.Rows[index].Tag = info;
+                }
+            }
+            catch (Exception e)
+            {
+                Helper.Logger.Error($"Method: LoadCandidatesGrid, {Environment.NewLine} Error: {e.Message}{Environment.NewLine}{e}");
             }
         }
 

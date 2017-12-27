@@ -89,8 +89,8 @@ namespace Selma.UI.Windows
 
             SharedViewLogic.LoadCandidatesTree(_treeView, _repository);
 
-            var parentNode = _treeView.Nodes.Find(_info.LastName.First().ToString(), false).First();
-            SharedViewLogic.LoadCandidatesGrid(_dgvCandidates, parentNode.Nodes);
+            var parentNode = _treeView.Nodes.Find(_info.LastName.First().ToString(), false).FirstOrDefault();
+            SharedViewLogic.LoadCandidatesGrid(_dgvCandidates, parentNode?.Nodes ?? (IEnumerable)Enumerable.Empty<TreeNode>());
 
             Close();
         }
@@ -101,6 +101,7 @@ namespace Selma.UI.Windows
 
             if (!File.Exists(templatePath))
             {
+                Helper.Logger.Warn($"PDF Application template doesn't exist. Location: {templatePath}");
                 MessageBox.Show($"Prazna PDF Prijava mora postajati na lokaciji: {templatePath}");
             }
             else
