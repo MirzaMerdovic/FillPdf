@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using Selma.Contracts.Entities;
@@ -64,6 +65,25 @@ namespace Selma.UI
                 };
 
                 parent.Nodes.Add(item);
+            }
+        }
+
+        public static void LoadExamHistory(IEnumerable<ExamInfo> exams, DataGridView dgvExamHistory)
+        {
+            foreach (var exam in exams)
+            {
+                var index = dgvExamHistory.Rows.Add(
+                    exam.Category,
+                    exam.TakenOn.Date.ToShortDateString(),
+                    exam.IncludesTrafficRegulationsTest,
+                    exam.IncludesFirstAidTest,
+                    exam.IncludesDrivingTest);
+
+                dgvExamHistory.Rows[index].Tag = exam;
+                dgvExamHistory.Rows[index].Cells["clmPrint"].Value = "Print";
+
+                dgvExamHistory.Rows[index].Tag = exam;
+                dgvExamHistory.Rows[index].Cells["clmDelete"].Value = "Obrisi";
             }
         }
     }

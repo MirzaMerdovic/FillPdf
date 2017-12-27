@@ -15,7 +15,5 @@ namespace Selma.Contracts.Entities
         public bool IncludesFirstAidTest { get; set; }
 
         public bool IncludesDrivingTest { get; set; }
-
-        public string Path { get; set; }
     }
 }

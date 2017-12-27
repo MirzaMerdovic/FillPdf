@@ -1,0 +1,32 @@
+{
+  "CandidateId": "b940b62a736441eda0519a00f31dc49f",
+  "FirstName": "Muharem",
+  "LastName": "Botonjiæ",
+  "NameOfParent": "Hamed",
+  "BirthDate": "0001-01-01T00:00:00",
+  "Address": "Trg Heroja 2",
+  "PostalCode": "56800",
+  "City": "Srebrenik",
+  "Citizenship": "BiH",
+  "Phone": "",
+  "Jmbg": "2304987123111",
+  "Occupancy": "Vodoinstalter",
+  "DrivingLicence": {
+    "LicenceId": "",
+    "Category": "",
+    "IssuedOn": "2017-12-27T12:51:22.3171859+01:00",
+    "ExpiresOn": "2017-12-27T12:51:22.3151361+01:00",
+    "Notes": ""
+  },
+  "Exams": [
+    {
+      "Id": "6e239525612e4b43b0e8d3a23978ac7d",
+      "TakenOn": "2017-12-27T13:38:15.2611276+01:00",
+      "Category": "B",
+      "IncludesTrafficRegulationsTest": false,
+      "IncludesFirstAidTest": true,
+      "IncludesDrivingTest": true,
+      "Path": "C:\\Users\\mirza\\Source\\Repos\\FillPdf\\Selma\\Selma.UI\\Data\\Prijave\\Botonjiæ Muharem_636499786952611276.pdf"
+    }
+  ]
+}

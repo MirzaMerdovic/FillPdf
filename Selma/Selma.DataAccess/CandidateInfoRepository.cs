@@ -16,6 +16,7 @@ namespace Selma.DataAccess
                 var parentPath = Helper.GetOrCreateParentPath(info.LastName.Substring(0, 1));
                 var candidatePath = Path.Combine(parentPath, $"{info.LastName} {info.FirstName}.json");
 
+                info.CandidateId = Guid.NewGuid().ToString("N");
                 var json = JsonConvert.SerializeObject(info, Formatting.Indented);
 
                 Helper.SaveCandidateJson(candidatePath, json);
@@ -24,8 +25,6 @@ namespace Selma.DataAccess
             {
                 Helper.Logger.Error($"Method: ICandidateInfoRepository.Create {Environment.NewLine} Error: {e.Message}{Environment.NewLine}{e}");
             }
-
-            info.CandidateId = Guid.NewGuid().ToString("N");
         }
 
         public CandidateInfo Get(string firstName, string lastName)

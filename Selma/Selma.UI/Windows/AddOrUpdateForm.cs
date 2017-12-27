@@ -107,7 +107,7 @@ namespace Selma.UI.Windows
             else
             {
                 var info = GetCandidateInfo();
-                new GenerateExamApplication(info, _repository).Show();
+                new GenerateExamApplication(info, _repository, _dgvCandidates, dgvExamHistory, _treeView).Show();
             }
         }
 
@@ -122,10 +122,11 @@ namespace Selma.UI.Windows
             // Open the file.
             if (e.ColumnIndex == 5)
             {
-                if (!(selectedRow.Tag is ExamInfo selectedExam) || !File.Exists(selectedExam?.Path))
+                if (!(selectedRow.Tag is ExamInfo selectedExam))
                     return;
 
-                Process.Start(selectedExam.Path);
+                var path = Helper.CreateExamForm(Helper.GetPdfTemplateLocation(), _info, selectedExam);
+                Process.Start(path);
 
                 return;
             }
@@ -179,21 +180,7 @@ namespace Selma.UI.Windows
                 dtpExpiresOn.Value = info.DrivingLicence.ExpiresOn;
 
 
-            foreach (var exam in info.Exams)
-            {
-                var index = dgvExamHistory.Rows.Add(
-                    exam.Category,
-                    exam.TakenOn.Date.ToShortDateString(),
-                    exam.IncludesTrafficRegulationsTest,
-                    exam.IncludesFirstAidTest,
-                    exam.IncludesDrivingTest);
-
-                dgvExamHistory.Rows[index].Tag = exam;
-                dgvExamHistory.Rows[index].Cells["clmPrint"].Value = "Print";
-
-                dgvExamHistory.Rows[index].Tag = exam;
-                dgvExamHistory.Rows[index].Cells["clmDelete"].Value = "Obrisi";
-            }
+            SharedViewLogic.LoadExamHistory(info.Exams ?? Enumerable.Empty<ExamInfo>(), dgvExamHistory);
         }
 
         private CandidateInfo GetCandidateInfo()
