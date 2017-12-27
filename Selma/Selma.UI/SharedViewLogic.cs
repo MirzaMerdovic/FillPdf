@@ -70,6 +70,8 @@ namespace Selma.UI
 
         public static void LoadExamHistory(IEnumerable<ExamInfo> exams, DataGridView dgvExamHistory)
         {
+            dgvExamHistory.Rows.Clear();
+
             foreach (var exam in exams)
             {
                 var index = dgvExamHistory.Rows.Add(

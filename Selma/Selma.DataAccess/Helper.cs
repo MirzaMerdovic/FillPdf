@@ -16,14 +16,14 @@ namespace Selma.DataAccess
 
         public static string GetPdfTemplateLocation()
         {
-            var templateLocation = Path.Combine(GetRootPath(), @"Data\Prazna.pdf");
+            var templateLocation = Path.Combine(GetRootPath(), @"Prazna.pdf");
 
             return templateLocation;
         }
 
         public static string GetExamApplicationsFolder()
         {
-            var tempPath = Path.Combine(GetRootPath(), @"Data\Prijave");
+            var tempPath = Path.Combine(GetRootPath(), @"Prijave");
 
             if (!Directory.Exists(tempPath))
                 Directory.CreateDirectory(tempPath);
@@ -31,20 +31,10 @@ namespace Selma.DataAccess
             return tempPath;
         }
 
-        public static string GetLogsLocation()
-        {
-            var logPath = Path.Combine(GetRootPath(), DateTime.Now.Date.ToString("ddmmYYYY"));
-
-            if (!Directory.Exists(logPath))
-                Directory.CreateDirectory(logPath);
-
-            return logPath;
-        }
-
         public static string GetOrCreateDataPath()
         {
             var rootPath = GetRootPath();
-            var dataPath = Path.Combine(rootPath, @"Data\Kandidati");
+            var dataPath = Path.Combine(rootPath, @"Kandidati");
 
             if (!Directory.Exists(dataPath))
                 Directory.CreateDirectory(dataPath);
@@ -106,8 +96,8 @@ namespace Selma.DataAccess
                 stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(390, 428, 120, 12)), "CandidateExamCount", $"{info.Exams.Count + 1}").GetTextField(), 1);
                 stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(390, 414, 120, 12)), "CandidateHasDrivingLicence", string.IsNullOrWhiteSpace(info.DrivingLicence.LicenceId) ? "Nema" : $"{info.DrivingLicence.Category}, {info.DrivingLicence.LicenceId}, {info.DrivingLicence.IssuedOn.ToShortDateString()}").GetTextField(), 1);
                 stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(390, 400, 120, 12)), "CandidateCanHaveDrivingLicence", info.DrivingLicence?.Notes).GetTextField(), 1);
-                stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(110, 69, 40, 12)), "CandidateDayAndMonth", $"{DateTime.Now.Day}.{DateTime.Now.Month}").GetTextField(), 1);
-                stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(185, 69, 40, 12)), "CandidateYear", DateTime.Now.Year.ToString().Substring(2, 2)).GetTextField(), 1);
+                stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(110, 69, 40, 12)), "CandidateDayAndMonth", $"{exam.TakenOn.Day}.{exam.TakenOn.Month}").GetTextField(), 1);
+                stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(185, 69, 40, 12)), "CandidateYear", exam.TakenOn.Year.ToString().Substring(2, 2)).GetTextField(), 1);
 
                 stamper.FormFlattening = true;
                 stamper.Close();
@@ -124,8 +114,7 @@ namespace Selma.DataAccess
 
         private static string GetRootPath()
         {
-            var currentDirectory = new DirectoryInfo(Environment.CurrentDirectory);
-            var rootPath = currentDirectory.Parent.Parent.FullName;
+            var rootPath = ConfigurationManager.AppSettings["DataPath"];
 
             return rootPath;
         }

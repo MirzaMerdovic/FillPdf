@@ -74,8 +74,8 @@ namespace Selma.UI.Windows
 
             var selectedNode = _treeCandidates.Nodes.Find(info.LastName.First().ToString(), false).FirstOrDefault();
             SharedViewLogic.LoadCandidatesGrid(_dgvCandidates, selectedNode?.Nodes ?? (IEnumerable) Enumerable.Empty<TreeNode>());
-
             SharedViewLogic.LoadExamHistory(info.Exams ?? Enumerable.Empty<ExamInfo>(), _dgvExamHistory);
+
             Close();
         }
     }
