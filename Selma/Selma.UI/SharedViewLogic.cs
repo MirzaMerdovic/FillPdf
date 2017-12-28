@@ -10,20 +10,20 @@ namespace Selma.UI
 {
     public static class SharedViewLogic
     {
-        public static void LoadCandidatesTree(TreeView root, ICandidateInfoRepository repository)
+        public static void LoadCandidatesTree(TreeView root, ICandidateInfoRepository candidateRepository)
         {
             try
             {
                 root.Nodes.Clear();
 
-                var rootDirectory = new DirectoryInfo(Helper.GetOrCreateDataPath());
+                var rootDirectory = new DirectoryInfo(Helper.GetOrCreateCandidatePath());
 
                 foreach (var directory in rootDirectory.GetDirectories("*", SearchOption.TopDirectoryOnly))
                 {
                     var item = new TreeNode { Name = $"{directory.Name}", Text = directory.Name, Tag = "parent" };
                     root.Nodes.Add(item);
 
-                    LoadCandidates(item, directory, repository);
+                    LoadCandidates(item, directory, candidateRepository);
                 }
 
                 root.ExpandAll();

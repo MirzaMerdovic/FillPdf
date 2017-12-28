@@ -287,3 +287,5 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 /Selma/Selma.App/Data/Candidates
+/Selma/Selma.UI/Data/Prijave
+/Selma/Selma.Test/Data/Prijave

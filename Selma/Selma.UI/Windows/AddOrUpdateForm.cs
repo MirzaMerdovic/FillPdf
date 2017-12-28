@@ -144,16 +144,10 @@ namespace Selma.UI.Windows
 
         private void SetButtons(bool isAdd)
         {
-            if (isAdd)
-            {
-                btnDelete.Visible = btnDelete.Enabled = btnEdit.Visible = btnEdit.Enabled = false;
-                btnAdd.Visible = btnAdd.Enabled = true;
-            }
-            else
-            {
-                btnDelete.Visible = btnDelete.Enabled = btnEdit.Visible = btnEdit.Enabled = true;
-                btnAdd.Visible = btnAdd.Enabled = false;
-            }
+            btnDelete.Visible = btnDelete.Enabled = !isAdd;
+            btnEdit.Visible = btnEdit.Enabled = !isAdd;
+            btnPrintExam.Visible = btnPrintExam.Enabled = !isAdd;
+            btnAdd.Visible = btnAdd.Enabled = isAdd;
         }
 
         private void BindValues(CandidateInfo info)

@@ -15,5 +15,13 @@ namespace Selma.Contracts.Entities
         public bool IncludesFirstAidTest { get; set; }
 
         public bool IncludesDrivingTest { get; set; }
+
+        public string Location { get; set; }
+
+        public DayOfWeek Day { get; set; }
+
+        public string Instructor { get; set; }
+
+        public string InstructorPhone { get; set; }
     }
 }

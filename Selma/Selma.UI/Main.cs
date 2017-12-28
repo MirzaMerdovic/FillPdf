@@ -8,19 +8,37 @@ namespace Selma.UI
 {
     public partial class FrmMain : Form
     {
-        private readonly ICandidateInfoRepository _repository;
+        private readonly ICandidateInfoRepository _candidateRepository;
 
-        public FrmMain()
+        public FrmMain(ICandidateInfoRepository candidateRepository)
         {
             InitializeComponent();
 
-            _repository = new CandidateInfoRepository();
+            _candidateRepository = candidateRepository;
         }
+
+        #region Form Events
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            SharedViewLogic.LoadCandidatesTree(treeViewCandidates, _repository);
+            SharedViewLogic.LoadCandidatesTree(treeViewCandidates, _candidateRepository);
         }
+
+        #endregion
+
+        #region ToolStrip Events
+
+        private void ToolBtnSettings_Click(object sender, EventArgs e)
+        {
+            new SettingsForm().Show();
+        }
+
+        private void ToolBtnInstructors_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
 
         private void TreeViewCandidates_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {

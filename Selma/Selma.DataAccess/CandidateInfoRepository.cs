@@ -17,9 +17,8 @@ namespace Selma.DataAccess
                 var candidatePath = Path.Combine(parentPath, $"{info.LastName} {info.FirstName}.json");
 
                 info.CandidateId = Guid.NewGuid().ToString("N");
-                var json = JsonConvert.SerializeObject(info, Formatting.Indented);
-
-                Helper.SaveCandidateJson(candidatePath, json);
+                
+                Helper.SaveJson(candidatePath, info);
             }
             catch (Exception e)
             {
@@ -51,7 +50,7 @@ namespace Selma.DataAccess
                 if (!File.Exists(candidateDocumentPath))
                     return null;
 
-                var json = Helper.ReadCandidateJson(candidateDocumentPath);
+                var json = Helper.ReadJson(candidateDocumentPath);
                 var document = JsonConvert.DeserializeObject<CandidateInfo>(json);
 
                 return document;

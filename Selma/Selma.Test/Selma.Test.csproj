@@ -52,12 +52,23 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="PdfTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Prazna.pdf" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Selma.Contracts\Selma.Contracts.csproj">
+      <Project>{f1476d05-a991-4a8c-9924-3aa301ab9c7f}</Project>
+      <Name>Selma.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Selma.DataAccess\Selma.DataAccess.csproj">
+      <Project>{d10e0fb1-fb26-4666-b1de-339718f7643e}</Project>
+      <Name>Selma.DataAccess</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
