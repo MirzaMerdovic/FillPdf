@@ -1,12 +1,8 @@
-﻿using iTextSharp.text;
-using iTextSharp.text.pdf;
-using Selma.Contracts.Entities;
+﻿using Selma.Contracts.Entities;
 using Selma.DataAccess;
 using System;
 using System.Collections;
-using System.IO;
 using System.Linq;
-using System.util;
 using System.Windows.Forms;
 
 namespace Selma.UI.Windows
@@ -14,7 +10,8 @@ namespace Selma.UI.Windows
     public partial class GenerateExamApplication : Form
     {
         private readonly CandidateInfo _info;
-        private readonly ICandidateInfoRepository _repository;
+        private readonly ICandidateInfoRepository _candidateRepository;
+        private readonly IInstructorRepository _instructorRepository;
         private readonly DataGridView _dgvCandidates;
         private readonly DataGridView _dgvExamHistory;
         private readonly TreeView _treeCandidates;
@@ -28,21 +25,30 @@ namespace Selma.UI.Windows
             InitializeComponent();
         }
 
-        public GenerateExamApplication(CandidateInfo info, ICandidateInfoRepository repository, DataGridView dgvCandidates, DataGridView dgvExamHistory, TreeView treeCandidates) 
+        public GenerateExamApplication(CandidateInfo info, ICandidateInfoRepository candidateRepository, IInstructorRepository instructorRepository, DataGridView dgvCandidates, DataGridView dgvExamHistory, TreeView treeCandidates) 
             : this(dgvCandidates, dgvExamHistory, treeCandidates)
         {
             _info = info;
-            _repository = repository;
+            _candidateRepository = candidateRepository;
+            _instructorRepository = instructorRepository;
         }
 
         private void GenerateExamApplication_Load(object sender, EventArgs e)
         {
             lblCandidateInfo.Text = $"{lblCandidateInfo.Text} {_info.FirstName} {_info.LastName}";
+            cbxExamDay.SelectedIndex = 0;
+
+            object[] items = _instructorRepository.GetAll().Select(x => $"{x.FirstName} {x.LastName}").ToArray();
+            if (!items.Any())
+                return;
+
+            cbxInstructors.Items.AddRange(items);
+            cbxInstructors.SelectedIndex = 0;
         }
 
         private void BtnGenerate_Click(object sender, EventArgs e)
         {
-            var info = _repository.Get(_info.FirstName, _info.LastName);
+            var info = _candidateRepository.Get(_info.FirstName, _info.LastName);
 
             if (info == null)
             {
@@ -60,17 +66,20 @@ namespace Selma.UI.Windows
                 TakenOn = dtpTakenOn.Value,
                 IncludesTrafficRegulationsTest = chxIncludesTrafficRegulationTest.Checked,
                 IncludesFirstAidTest = chxIncludesFirstAidTest.Checked,
-                IncludesDrivingTest = chxIncludesDrivingTest.Checked
+                IncludesDrivingTest = chxIncludesDrivingTest.Checked,
+                Day = cbxExamDay.SelectedItem.ToString(),
+                Location = txtLocation.Text.Trim(),
+                Instructor = _instructorRepository.Get(cbxInstructors.SelectedItem.ToString())
             };
 
             info.Exams.Add(exam);
 
             Helper.CreateExamForm(Helper.GetPdfTemplateLocation(), _info, exam);
 
-            _repository.Update(info);
+            _candidateRepository.Update(info);
 
 
-            SharedViewLogic.LoadCandidatesTree(_treeCandidates, _repository);
+            SharedViewLogic.LoadCandidatesTree(_treeCandidates, _candidateRepository);
 
             var selectedNode = _treeCandidates.Nodes.Find(info.LastName.First().ToString(), false).FirstOrDefault();
             SharedViewLogic.LoadCandidatesGrid(_dgvCandidates, selectedNode?.Nodes ?? (IEnumerable) Enumerable.Empty<TreeNode>());

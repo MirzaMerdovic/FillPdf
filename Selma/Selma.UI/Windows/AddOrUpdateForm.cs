@@ -17,7 +17,8 @@ namespace Selma.UI.Windows
         private readonly CandidateInfo _info;
         private readonly TreeView _treeView;
         private readonly DataGridView _dgvCandidates;
-        private readonly ICandidateInfoRepository _repository;
+        private readonly ICandidateInfoRepository _candidateRepository;
+        private readonly IInstructorRepository _instructorRepository;
 
         #endregion
 
@@ -26,17 +27,17 @@ namespace Selma.UI.Windows
         public AddOrUpdateForm()
         {
             InitializeComponent();
-
-            _repository = new CandidateInfoRepository();
         }
 
-        public AddOrUpdateForm(bool isAdd, CandidateInfo info, TreeView treeView, DataGridView dgvCandidates) : this()
+        public AddOrUpdateForm(bool isAdd, CandidateInfo info, TreeView treeView, DataGridView dgvCandidates, ICandidateInfoRepository candidateRepository, IInstructorRepository instructorRepository) : this()
         {
             SetButtons(isAdd);
 
             _info = info;
             _treeView = treeView;
             _dgvCandidates = dgvCandidates;
+            _candidateRepository = candidateRepository;
+            _instructorRepository = instructorRepository;
         }
 
         #endregion
@@ -50,7 +51,7 @@ namespace Selma.UI.Windows
 
         private void AddOrUpdateForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            SharedViewLogic.LoadCandidatesTree(_treeView, _repository);
+            SharedViewLogic.LoadCandidatesTree(_treeView, _candidateRepository);
         }
 
         #endregion
@@ -60,9 +61,9 @@ namespace Selma.UI.Windows
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             var info = GetCandidateInfo();
-            _repository.Create(info);
+            _candidateRepository.Create(info);
 
-            SharedViewLogic.LoadCandidatesTree(_treeView, _repository);
+            SharedViewLogic.LoadCandidatesTree(_treeView, _candidateRepository);
 
             var selectedNode = GetOrAddParentNode(info);
             SharedViewLogic.LoadCandidatesGrid(_dgvCandidates, selectedNode.Nodes);
@@ -73,9 +74,9 @@ namespace Selma.UI.Windows
         private void BtnEdit_Click(object sender, EventArgs e)
         {
             var info = GetCandidateInfo();
-            _repository.Update(info);
+            _candidateRepository.Update(info);
 
-            SharedViewLogic.LoadCandidatesTree(_treeView, _repository);
+            SharedViewLogic.LoadCandidatesTree(_treeView, _candidateRepository);
 
             if (_dgvCandidates.SelectedRows.Count > 0)
                 _dgvCandidates.SelectedRows[0].Tag = info;
@@ -85,9 +86,9 @@ namespace Selma.UI.Windows
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            _repository.Delete(txtFirstName.Text.Trim(), txtLastName.Text.Trim());
+            _candidateRepository.Delete(txtFirstName.Text.Trim(), txtLastName.Text.Trim());
 
-            SharedViewLogic.LoadCandidatesTree(_treeView, _repository);
+            SharedViewLogic.LoadCandidatesTree(_treeView, _candidateRepository);
 
             var parentNode = _treeView.Nodes.Find(_info.LastName.First().ToString(), false).FirstOrDefault();
             SharedViewLogic.LoadCandidatesGrid(_dgvCandidates, parentNode?.Nodes ?? (IEnumerable)Enumerable.Empty<TreeNode>());
@@ -107,7 +108,7 @@ namespace Selma.UI.Windows
             else
             {
                 var info = GetCandidateInfo();
-                new GenerateExamApplication(info, _repository, _dgvCandidates, dgvExamHistory, _treeView).Show();
+                new GenerateExamApplication(info, _candidateRepository, _instructorRepository, _dgvCandidates, dgvExamHistory, _treeView).Show();
             }
         }
 
@@ -115,7 +116,7 @@ namespace Selma.UI.Windows
 
         #region DatagridView Events
 
-        private void DgvExamHistory_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvExamHistory_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var selectedRow = dgvExamHistory.Rows[e.RowIndex];
 

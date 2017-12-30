@@ -1,5 +1,5 @@
 {
-  "CandidateId": "601ee3d075554064b45d2a3f013313bb",
+  "CandidateId": "9ead081f66b94e3f926f5c423459f1d2",
   "FirstName": "Sa¹a",
   "LastName": "Avdiæ",
   "NameOfParent": "Avdija",
@@ -26,7 +26,24 @@
       "IncludesTrafficRegulationsTest": false,
       "IncludesFirstAidTest": true,
       "IncludesDrivingTest": true,
-      "Path": "C:\\Users\\mirza\\Source\\Repos\\FillPdf\\Selma\\Selma.UI\\Data\\Prijave\\Avdiæ Sa¹a_636498822438575418.pdf"
+      "Location": null,
+      "Day": null,
+      "Instructor": null
+    },
+    {
+      "Id": "59cb41da669a4766a7a2ff8990022bbe",
+      "TakenOn": "2017-12-30T23:29:20.6430398+01:00",
+      "Category": "C",
+      "IncludesTrafficRegulationsTest": false,
+      "IncludesFirstAidTest": false,
+      "IncludesDrivingTest": true,
+      "Location": "Dobrinja",
+      "Day": "Petak",
+      "Instructor": {
+        "FirstName": "Fadil",
+        "LastName": "Tufek",
+        "Phone": "064 555128"
+      }
     }
   ]
 }

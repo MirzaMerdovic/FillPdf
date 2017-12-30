@@ -24,6 +24,19 @@ namespace Selma.DataAccess
             }
         }
 
+        public Instructor Get(string fullName)
+        {
+            var instructorPath = Path.Combine(Helper.GetOrCreateInstructorsPath(), $"{fullName}.json");
+
+            if (!File.Exists(instructorPath))
+                return null;
+
+            var json = Helper.ReadJson(instructorPath);
+            var instructor = JsonConvert.DeserializeObject<Instructor>(json);
+
+            return instructor;
+        }
+
         public IEnumerable<Instructor> GetAll()
         {
             var instructors = new List<Instructor>();

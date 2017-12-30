@@ -7,6 +7,8 @@ namespace Selma.DataAccess
     {
         void Create(Instructor instructor);
 
+        Instructor Get(string fullName);
+
         IEnumerable<Instructor> GetAll();
 
         void Update(Instructor instructor);

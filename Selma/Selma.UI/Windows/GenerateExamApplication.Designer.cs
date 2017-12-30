@@ -41,7 +41,7 @@
             this.lblLocation = new System.Windows.Forms.Label();
             this.txtLocation = new System.Windows.Forms.TextBox();
             this.lblInstructor = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbxInstructors = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -172,13 +172,13 @@
             this.lblInstructor.TabIndex = 16;
             this.lblInstructor.Text = "Instruktor:";
             // 
-            // comboBox1
+            // cbxInstructors
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(93, 191);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(227, 21);
-            this.comboBox1.TabIndex = 17;
+            this.cbxInstructors.FormattingEnabled = true;
+            this.cbxInstructors.Location = new System.Drawing.Point(93, 191);
+            this.cbxInstructors.Name = "cbxInstructors";
+            this.cbxInstructors.Size = new System.Drawing.Size(227, 21);
+            this.cbxInstructors.TabIndex = 17;
             // 
             // label1
             // 
@@ -197,7 +197,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(374, 291);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cbxInstructors);
             this.Controls.Add(this.lblInstructor);
             this.Controls.Add(this.txtLocation);
             this.Controls.Add(this.lblLocation);
@@ -238,7 +238,7 @@
         private System.Windows.Forms.Label lblLocation;
         private System.Windows.Forms.TextBox txtLocation;
         private System.Windows.Forms.Label lblInstructor;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbxInstructors;
         private System.Windows.Forms.Label label1;
     }
 }

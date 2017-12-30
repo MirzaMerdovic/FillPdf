@@ -60,12 +60,12 @@ namespace Selma.UI
         {
             var row = dgvCandidates.Rows[e.RowIndex];
 
-            new AddOrUpdateForm(false, row.Tag as CandidateInfo, treeViewCandidates, dgvCandidates){Text = "Detalji o kandidatu"}.Show();
+            new AddOrUpdateForm(false, row.Tag as CandidateInfo, treeViewCandidates, dgvCandidates, _candidateRepository, _instructorRepository){Text = "Detalji o kandidatu"}.Show();
         }
 
         private void BtnAddCandidate_Click(object sender, EventArgs e)
         {
-            new AddOrUpdateForm(true, new CandidateInfo(), treeViewCandidates, dgvCandidates) { Text = "Dodaj novog kandidata" }.Show();
+            new AddOrUpdateForm(true, new CandidateInfo(), treeViewCandidates, dgvCandidates, _candidateRepository, _instructorRepository) { Text = "Dodaj novog kandidata" }.Show();
         }
     }
 }
