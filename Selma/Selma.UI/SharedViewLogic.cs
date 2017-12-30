@@ -83,8 +83,6 @@ namespace Selma.UI
 
                 dgvExamHistory.Rows[index].Tag = exam;
                 dgvExamHistory.Rows[index].Cells["clmPrint"].Value = "Print";
-
-                dgvExamHistory.Rows[index].Tag = exam;
                 dgvExamHistory.Rows[index].Cells["clmDelete"].Value = "Obrisi";
             }
         }

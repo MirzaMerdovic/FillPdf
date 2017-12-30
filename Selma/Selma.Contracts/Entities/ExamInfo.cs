@@ -18,10 +18,8 @@ namespace Selma.Contracts.Entities
 
         public string Location { get; set; }
 
-        public DayOfWeek Day { get; set; }
+        public string Day { get; set; }
 
-        public string Instructor { get; set; }
-
-        public string InstructorPhone { get; set; }
+        public Instructor Instructor { get; set; }
     }
 }

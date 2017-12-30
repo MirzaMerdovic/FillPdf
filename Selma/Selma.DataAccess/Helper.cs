@@ -42,12 +42,23 @@ namespace Selma.DataAccess
         public static string GetOrCreateCandidatePath()
         {
             var rootPath = GetDataPath();
-            var dataPath = Path.Combine(rootPath, @"Kandidati");
+            var candidatesPath = Path.Combine(rootPath, @"Kandidati");
 
-            if (!Directory.Exists(dataPath))
-                Directory.CreateDirectory(dataPath);
+            if (!Directory.Exists(candidatesPath))
+                Directory.CreateDirectory(candidatesPath);
 
-            return dataPath;
+            return candidatesPath;
+        }
+
+        public static string GetOrCreateInstructorsPath()
+        {
+            var rootPath = GetDataPath();
+            var instructorsPath = Path.Combine(rootPath, @"Instruktori");
+
+            if (!Directory.Exists(instructorsPath))
+                Directory.CreateDirectory(instructorsPath);
+
+            return instructorsPath;
         }
 
         public static string GetOrCreateParentPath(string parentFolderName)
@@ -99,9 +110,9 @@ namespace Selma.DataAccess
                             stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(28, 620, 12, 12)), "IncludeDriving", "X").GetTextField(), 1);
 
                         stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(240, 618, 50, 12)), "ExamLocation", exam.Location).GetTextField(), 1);
-                        stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(300, 618, 50, 12)), "ExamDay", exam.Day.ToString()).GetTextField(), 1);
-                        stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(380, 618, 80, 12)), "InstructorName", $"ins. {exam.Instructor}").GetTextField(), 1);
-                        stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(394, 604, 50, 12)), "InstructorPhoner", exam.InstructorPhone).GetTextField(), 1);
+                        stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(300, 618, 50, 12)), "ExamDay", exam.Day).GetTextField(), 1);
+                        stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(380, 618, 80, 12)), "InstructorName", $"ins. {exam.Instructor?.LastName} {exam.Instructor?.FirstName}").GetTextField(), 1);
+                        stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(394, 604, 50, 12)), "InstructorPhoner", exam.Instructor?.Phone).GetTextField(), 1);
 
                         stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(390, 570, 120, 12)), "CandidateFullName", $"{info.LastName} {info.FirstName}").GetTextField(), 1);
                         stamper.AddAnnotation(Create(stamper.Writer, new Rectangle(new RectangleJ(390, 554, 120, 12)), "CandidateParentName", info.NameOfParent).GetTextField(), 1);

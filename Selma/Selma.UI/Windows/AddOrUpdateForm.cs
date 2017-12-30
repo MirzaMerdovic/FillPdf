@@ -115,7 +115,7 @@ namespace Selma.UI.Windows
 
         #region DatagridView Events
 
-        private void DgvExamHistory_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvExamHistory_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             var selectedRow = dgvExamHistory.Rows[e.RowIndex];
 

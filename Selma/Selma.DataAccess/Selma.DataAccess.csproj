@@ -53,6 +53,8 @@
     <Compile Include="CandidateInfoRepository.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="ICandidateInfoRepository.cs" />
+    <Compile Include="IInstructorRepository.cs" />
+    <Compile Include="InstructorRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

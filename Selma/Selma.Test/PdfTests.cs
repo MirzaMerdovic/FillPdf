@@ -47,9 +47,13 @@ namespace Selma.Test
                 IncludesFirstAidTest = false,
                 IncludesTrafficRegulationsTest = false,
                 Location = "Grbavica",
-                Instructor = "Nezir Mehić",
-                Day = DayOfWeek.Saturday,
-                InstructorPhone = "061 342 555"
+                Day = "Subota",
+                Instructor = new Instructor
+                {
+                    FirstName = "Nezir",
+                    LastName = "Mehić",
+                    Phone = "062 334 125"
+                }
             });
 
             Assert.IsTrue(File.Exists(path));

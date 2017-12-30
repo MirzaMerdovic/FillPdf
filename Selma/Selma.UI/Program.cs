@@ -16,7 +16,7 @@ namespace Selma.UI
             {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new FrmMain(new CandidateInfoRepository()));
+                Application.Run(new FrmMain(new CandidateInfoRepository(), new InstructorRepository()));
             }
             catch (Exception e)
             {

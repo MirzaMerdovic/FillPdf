@@ -452,7 +452,7 @@
             this.dgvExamHistory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvExamHistory.Size = new System.Drawing.Size(465, 420);
             this.dgvExamHistory.TabIndex = 0;
-            this.dgvExamHistory.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvExamHistory_CellContentClick);
+            this.dgvExamHistory.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvExamHistory_CellDoubleClick);
             // 
             // clmCategory
             // 

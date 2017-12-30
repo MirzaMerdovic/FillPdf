@@ -10,11 +10,14 @@ namespace Selma.UI
     {
         private readonly ICandidateInfoRepository _candidateRepository;
 
-        public FrmMain(ICandidateInfoRepository candidateRepository)
+        private readonly IInstructorRepository _instructorRepository;
+
+        public FrmMain(ICandidateInfoRepository candidateRepository, IInstructorRepository instructorRepository)
         {
             InitializeComponent();
 
             _candidateRepository = candidateRepository;
+            _instructorRepository = instructorRepository;
         }
 
         #region Form Events
@@ -35,7 +38,7 @@ namespace Selma.UI
 
         private void ToolBtnInstructors_Click(object sender, EventArgs e)
         {
-
+            new InstructorsForm(_instructorRepository).Show();
         }
 
         #endregion
