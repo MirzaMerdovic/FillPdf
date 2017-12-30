@@ -86,5 +86,20 @@ namespace Selma.UI
                 dgvExamHistory.Rows[index].Cells["clmDelete"].Value = "Obrisi";
             }
         }
+
+        public static void LoadInstructors(DataGridView dgvInstructors, IInstructorRepository repository)
+        {
+            dgvInstructors.Rows.Clear();
+
+            foreach (var instructor in repository.GetAll())
+            {
+                var index = dgvInstructors.Rows.Add(
+                    instructor.FirstName,
+                    instructor.LastName,
+                    instructor.Phone);
+
+                dgvInstructors.Rows[index].Tag = instructor;
+            }
+        }
     }
 }

@@ -9,13 +9,17 @@ namespace Selma.UI.Windows
     {
         private readonly IInstructorRepository _repository;
 
-        public AddOrEditInstructorForm(bool isAdd, Instructor instructor, IInstructorRepository repository)
+        private readonly DataGridView _dgvInstructors;
+
+        public AddOrEditInstructorForm(bool isAdd, Instructor instructor, IInstructorRepository repository, DataGridView dgvInstructors)
         {
             InitializeComponent();
 
             SetControls(isAdd);
             BindData(instructor);
+
             _repository = repository;
+            _dgvInstructors = dgvInstructors;
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
@@ -26,6 +30,10 @@ namespace Selma.UI.Windows
                 LastName = txtLastName.Text.Trim(),
                 Phone = txtPhone.Text.Trim()
             });
+
+            SharedViewLogic.LoadInstructors(_dgvInstructors, _repository);
+
+            Close();
         }
 
         private void BtnEdit_Click(object sender, EventArgs e)
@@ -36,11 +44,19 @@ namespace Selma.UI.Windows
                 LastName = txtLastName.Text.Trim(),
                 Phone = txtPhone.Text.Trim()
             });
+
+            SharedViewLogic.LoadInstructors(_dgvInstructors, _repository);
+
+            Close();
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
             _repository.Delete(txtFirstName.Text.Trim(), txtLastName.Text.Trim());
+
+            SharedViewLogic.LoadInstructors(_dgvInstructors, _repository);
+
+            Close();
         }
 
         private void SetControls(bool isAdd)

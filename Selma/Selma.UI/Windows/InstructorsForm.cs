@@ -18,27 +18,19 @@ namespace Selma.UI.Windows
 
         private void InstructorsForm_Load(object sender, EventArgs e)
         {
-            foreach (var instructor in _repository.GetAll())
-            {
-                var index = dgvInstructors.Rows.Add(
-                    instructor.FirstName,
-                    instructor.LastName,
-                    instructor.Phone);
-
-                dgvInstructors.Rows[index].Tag = instructor;
-            }
+            SharedViewLogic.LoadInstructors(dgvInstructors, _repository);
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
-            new AddOrEditInstructorForm(true, null, _repository).Show();
+            new AddOrEditInstructorForm(true, null, _repository, dgvInstructors).Show();
         }
 
         private void DgvInstructors_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             var instructor = dgvInstructors.Rows[e.RowIndex].Tag as Instructor;
 
-            new AddOrEditInstructorForm(false, instructor, _repository).Show();
+            new AddOrEditInstructorForm(false, instructor, _repository, dgvInstructors).Show();
         }
     }
 }
