@@ -174,6 +174,7 @@
             // 
             // cbxInstructors
             // 
+            this.cbxInstructors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxInstructors.FormattingEnabled = true;
             this.cbxInstructors.Location = new System.Drawing.Point(93, 191);
             this.cbxInstructors.Name = "cbxInstructors";

@@ -1,5 +1,5 @@
 {
-  "CandidateId": "693d58dd47ff42ea957a71c6d723c62e",
+  "CandidateId": "b0beda0b1c99413e826e29c21828bbee",
   "FirstName": "Sa¹a",
   "LastName": "Avdiæ",
   "NameOfParent": "Avdija",
@@ -32,6 +32,21 @@
         "FirstName": "Fadil",
         "LastName": "Tufek",
         "Phone": "064 555128"
+      }
+    },
+    {
+      "Id": "a8ac85e4a16d4242b8ce5d20d1b8b050",
+      "TakenOn": "2018-01-01T16:18:12.9973905+01:00",
+      "Category": "B",
+      "IncludesTrafficRegulationsTest": false,
+      "IncludesFirstAidTest": false,
+      "IncludesDrivingTest": true,
+      "Location": "Grbavica",
+      "Day": "Èetvrtak",
+      "Instructor": {
+        "FirstName": "Nezir",
+        "LastName": "Mehic",
+        "Phone": "063 224 124"
       }
     }
   ]
